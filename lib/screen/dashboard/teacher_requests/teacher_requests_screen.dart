@@ -27,12 +27,17 @@ class _TeacherRequestsScreenState extends State<TeacherRequestsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xFFF5F5F5), // خلفية رمادية فاتحة
       appBar: AppBar(
-        title: const Text('طلبات الطلاب'),
+        title: const Text(
+          'طلبات الطلاب',
+          style: TextStyle(color: Colors.white),
+        ),
         backgroundColor: AppColors.primary,
+        elevation: 2,
         actions: [
           IconButton(
-            icon: const Icon(Icons.refresh),
+            icon: const Icon(Icons.refresh, color: Colors.white),
             onPressed: () {
               context.read<TeacherRequestsProvider>().getTeacherRequests();
             },
@@ -77,6 +82,45 @@ class _TeacherRequestsScreenState extends State<TeacherRequestsScreen> {
             },
           );
         },
+      ),
+      bottomNavigationBar: Container(
+        decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.1),
+              blurRadius: 10,
+              offset: const Offset(0, -5),
+            ),
+          ],
+        ),
+        child: BottomNavigationBar(
+          currentIndex: 0,
+          selectedItemColor: AppColors.primary,
+          unselectedItemColor: Colors.grey,
+          backgroundColor: Colors.white,
+          type: BottomNavigationBarType.fixed,
+          items: const [
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: 'الرئيسية',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.assignment),
+              label: 'الطلبات',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.person),
+              label: 'الملف الشخصي',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.settings),
+              label: 'الإعدادات',
+            ),
+          ],
+          onTap: (index) {
+            // يمكنك إضافة التنقل بين الصفحات هنا
+          },
+        ),
       ),
     );
   }
@@ -175,10 +219,16 @@ class RequestCard extends StatelessWidget {
           Container(
             padding: EdgeInsets.all(16.r),
             decoration: BoxDecoration(
-              color: AppColors.primary.withOpacity(0.1),
+              color: Colors.white,
               borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(12.r),
                 topRight: Radius.circular(12.r),
+              ),
+              border: Border(
+                bottom: BorderSide(
+                  color: Colors.grey.withOpacity(0.2),
+                  width: 1,
+                ),
               ),
             ),
             child: Row(
@@ -187,7 +237,10 @@ class RequestCard extends StatelessWidget {
                   backgroundColor: AppColors.primary,
                   child: Text(
                     request.studentName?.substring(0, 1).toUpperCase() ?? 'S',
-                    style: const TextStyle(color: Colors.white),
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
                 SizedBox(width: 12.w),
@@ -200,13 +253,14 @@ class RequestCard extends StatelessWidget {
                         style: TextStyle(
                           fontSize: 16.sp,
                           fontWeight: FontWeight.bold,
+                          color: Colors.black87,
                         ),
                       ),
                       Text(
                         request.studentName ?? '',
                         style: TextStyle(
                           fontSize: 14.sp,
-                          color: Colors.grey[600],
+                          color: Colors.grey[700],
                         ),
                       ),
                     ],
@@ -214,51 +268,61 @@ class RequestCard extends StatelessWidget {
                 ),
                 Container(
                   padding: EdgeInsets.symmetric(
-                    horizontal: 8.w,
-                    vertical: 4.h,
+                    horizontal: 12.w,
+                    vertical: 6.h,
                   ),
                   decoration: BoxDecoration(
-                    color: _getStatusColor(request.approved).withOpacity(0.2),
-                    borderRadius: BorderRadius.circular(12.r),
+                    color: _getStatusColor(request.approved).withOpacity(0.1),
+                    borderRadius: BorderRadius.circular(20.r),
+                    border: Border.all(
+                      color: _getStatusColor(request.approved).withOpacity(0.5),
+                      width: 1,
+                    ),
                   ),
                   child: Text(
                     _getStatusText(request.approved),
                     style: TextStyle(
                       color: _getStatusColor(request.approved),
                       fontSize: 12.sp,
+                      fontWeight: FontWeight.w600,
                     ),
                   ),
                 ),
               ],
             ),
           ),
-          Padding(
+          Container(
             padding: EdgeInsets.all(16.r),
+            color: Colors.white,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  'الموضوع: ${request.subject ?? ''}',
-                  style: TextStyle(fontSize: 14.sp),
-                ),
+                _buildInfoRow('الموضوع', request.subject ?? ''),
                 SizedBox(height: 8.h),
-                Text(
-                  'السبب: ${request.reason ?? ''}',
-                  style: TextStyle(fontSize: 14.sp),
-                ),
+                _buildInfoRow('السبب', request.reason ?? ''),
                 SizedBox(height: 16.h),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     ElevatedButton.icon(
                       onPressed: () => _showStatusChangeDialog(context),
-                      icon: const Icon(Icons.edit_note),
-                      label: const Text('تغيير الحالة'),
+                      icon: const Icon(Icons.edit_note, color: Colors.white),
+                      label: Text(
+                        'تغيير الحالة',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 14.sp,
+                        ),
+                      ),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: AppColors.primary,
                         padding: EdgeInsets.symmetric(
                           horizontal: 16.w,
                           vertical: 8.h,
+                        ),
+                        elevation: 2,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8.r),
                         ),
                       ),
                     ),
@@ -273,13 +337,23 @@ class RequestCard extends StatelessWidget {
                             ),
                           );
                         },
-                        icon: const Icon(Icons.chat),
-                        label: const Text('المحادثة'),
+                        icon: const Icon(Icons.chat, color: Colors.white),
+                        label: Text(
+                          'المحادثة',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 14.sp,
+                          ),
+                        ),
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.green,
                           padding: EdgeInsets.symmetric(
                             horizontal: 16.w,
                             vertical: 8.h,
+                          ),
+                          elevation: 2,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8.r),
                           ),
                         ),
                       ),
@@ -290,6 +364,31 @@ class RequestCard extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+
+  Widget _buildInfoRow(String label, String value) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          '$label: ',
+          style: TextStyle(
+            fontSize: 14.sp,
+            color: Colors.grey[700],
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        Expanded(
+          child: Text(
+            value,
+            style: TextStyle(
+              fontSize: 14.sp,
+              color: Colors.black87,
+            ),
+          ),
+        ),
+      ],
     );
   }
 } 
