@@ -5,6 +5,7 @@ import 'package:lms/screen/dashboard/teacher_requests/chat_screen.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lms/utils/app_consts.dart';
 import 'package:lms/data/model/teacher_request/teacher_request_response.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 class TeacherRequestsScreen extends StatefulWidget {
   const TeacherRequestsScreen({Key? key}) : super(key: key);
@@ -29,6 +30,14 @@ class _TeacherRequestsScreenState extends State<TeacherRequestsScreen> {
       appBar: AppBar(
         title: const Text('طلبات الطلاب'),
         backgroundColor: AppColors.primary,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.refresh),
+            onPressed: () {
+              context.read<TeacherRequestsProvider>().getTeacherRequests();
+            },
+          ),
+        ],
       ),
       body: Consumer<TeacherRequestsProvider>(
         builder: (context, provider, child) {
@@ -37,7 +46,26 @@ class _TeacherRequestsScreenState extends State<TeacherRequestsScreen> {
           }
 
           if (provider.requests.isEmpty) {
-            return const Center(child: Text('لا توجد طلبات'));
+            return Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    Icons.assignment_outlined,
+                    size: 70.r,
+                    color: Colors.grey,
+                  ),
+                  SizedBox(height: 16.h),
+                  const Text(
+                    'لا توجد طلبات حالياً',
+                    style: TextStyle(
+                      color: Colors.grey,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
+            );
           }
 
           return ListView.builder(
@@ -59,85 +87,208 @@ class RequestCard extends StatelessWidget {
 
   const RequestCard({Key? key, required this.request}) : super(key: key);
 
+  String _getStatusText(int? status) {
+    switch (status) {
+      case 0:
+        return 'في انتظار الرد';
+      case 1:
+        return 'تمت الموافقة';
+      case 2:
+        return 'تم الرفض';
+      default:
+        return 'غير معروف';
+    }
+  }
+
+  Color _getStatusColor(int? status) {
+    switch (status) {
+      case 0:
+        return Colors.orange;
+      case 1:
+        return Colors.green;
+      case 2:
+        return Colors.red;
+      default:
+        return Colors.grey;
+    }
+  }
+
+  Future<void> _showStatusChangeDialog(BuildContext context) async {
+    return showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('تغيير حالة الطلب'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              ListTile(
+                leading: const Icon(Icons.check_circle, color: Colors.green),
+                title: const Text('موافقة'),
+                onTap: () async {
+                  Navigator.pop(context);
+                  await _updateStatus(context, 1);
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.cancel, color: Colors.red),
+                title: const Text('رفض'),
+                onTap: () async {
+                  Navigator.pop(context);
+                  await _updateStatus(context, 2);
+                },
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  Future<void> _updateStatus(BuildContext context, int status) async {
+    EasyLoading.show(status: 'جاري التحديث...');
+    final success = await context
+        .read<TeacherRequestsProvider>()
+        .updateRequestStatus(request.id!, status);
+    EasyLoading.dismiss();
+
+    if (success && status == 1) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => ChatScreen(requestId: request.id!),
+        ),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Card(
+      elevation: 3,
       margin: EdgeInsets.only(bottom: 16.r),
-      child: Padding(
-        padding: EdgeInsets.all(16.r),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              request.title ?? '',
-              style: TextStyle(
-                fontSize: 18.sp,
-                fontWeight: FontWeight.bold,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(12.r),
+      ),
+      child: Column(
+        children: [
+          Container(
+            padding: EdgeInsets.all(16.r),
+            decoration: BoxDecoration(
+              color: AppColors.primary.withOpacity(0.1),
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(12.r),
+                topRight: Radius.circular(12.r),
               ),
             ),
-            SizedBox(height: 8.h),
-            Text('الطالب: ${request.studentName ?? ''}'),
-            Text('الموضوع: ${request.subject ?? ''}'),
-            Text('السبب: ${request.reason ?? ''}'),
-            SizedBox(height: 16.h),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            child: Row(
               children: [
-                if (request.approved == 0) ...[
-                  ElevatedButton(
-                    onPressed: () async {
-                      final success = await context
-                          .read<TeacherRequestsProvider>()
-                          .updateRequestStatus(request.id!, 1);
-                      
-                      if (success) {
-                        // فتح شاشة الدردشة بعد الموافقة
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => ChatScreen(requestId: request.id!),
-                          ),
-                        );
-                      }
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.green,
-                    ),
-                    child: const Text('موافقة'),
+                CircleAvatar(
+                  backgroundColor: AppColors.primary,
+                  child: Text(
+                    request.studentName?.substring(0, 1).toUpperCase() ?? 'S',
+                    style: const TextStyle(color: Colors.white),
                   ),
-                  ElevatedButton(
-                    onPressed: () {
-                      context
-                          .read<TeacherRequestsProvider>()
-                          .updateRequestStatus(request.id!, 2);
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.red,
-                    ),
-                    child: const Text('رفض'),
-                  ),
-                ] else if (request.approved == 1) ...[
-                  ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => ChatScreen(requestId: request.id!),
+                ),
+                SizedBox(width: 12.w),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        request.title ?? '',
+                        style: TextStyle(
+                          fontSize: 16.sp,
+                          fontWeight: FontWeight.bold,
                         ),
-                      );
-                    },
-                    child: const Text('فتح المحادثة'),
+                      ),
+                      Text(
+                        request.studentName ?? '',
+                        style: TextStyle(
+                          fontSize: 14.sp,
+                          color: Colors.grey[600],
+                        ),
+                      ),
+                    ],
                   ),
-                ] else ...[
-                  const Text(
-                    'تم رفض الطلب',
-                    style: TextStyle(color: Colors.red),
+                ),
+                Container(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 8.w,
+                    vertical: 4.h,
                   ),
-                ],
+                  decoration: BoxDecoration(
+                    color: _getStatusColor(request.approved).withOpacity(0.2),
+                    borderRadius: BorderRadius.circular(12.r),
+                  ),
+                  child: Text(
+                    _getStatusText(request.approved),
+                    style: TextStyle(
+                      color: _getStatusColor(request.approved),
+                      fontSize: 12.sp,
+                    ),
+                  ),
+                ),
               ],
             ),
-          ],
-        ),
+          ),
+          Padding(
+            padding: EdgeInsets.all(16.r),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'الموضوع: ${request.subject ?? ''}',
+                  style: TextStyle(fontSize: 14.sp),
+                ),
+                SizedBox(height: 8.h),
+                Text(
+                  'السبب: ${request.reason ?? ''}',
+                  style: TextStyle(fontSize: 14.sp),
+                ),
+                SizedBox(height: 16.h),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    ElevatedButton.icon(
+                      onPressed: () => _showStatusChangeDialog(context),
+                      icon: const Icon(Icons.edit_note),
+                      label: const Text('تغيير الحالة'),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: AppColors.primary,
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 16.w,
+                          vertical: 8.h,
+                        ),
+                      ),
+                    ),
+                    if (request.approved == 1)
+                      ElevatedButton.icon(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  ChatScreen(requestId: request.id!),
+                            ),
+                          );
+                        },
+                        icon: const Icon(Icons.chat),
+                        label: const Text('المحادثة'),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.green,
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 16.w,
+                            vertical: 8.h,
+                          ),
+                        ),
+                      ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
