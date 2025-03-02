@@ -1,0 +1,2 @@
+D:/server/htdocs/lmsapp/New folder/lms-mobile-app/android/app/.cxx/Debug/q5x4wt6i/x86/CMakeFiles/edit_cache.dir
+D:/server/htdocs/lmsapp/New folder/lms-mobile-app/android/app/.cxx/Debug/q5x4wt6i/x86/CMakeFiles/rebuild_cache.dir

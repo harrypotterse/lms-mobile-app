@@ -4,6 +4,7 @@ import 'package:lms/screen/dashboard/dashboard_screen_provider.dart';
 import 'package:lms/screen/dashboard/widgets/account_balance_cart.dart';
 import 'package:lms/screen/dashboard/widgets/summary_cart.dart';
 import 'package:lms/screen/drawer/widgets/all_assignment_list_cart.dart';
+import 'package:lms/screen/dashboard/teacher_requests/teacher_requests_screen.dart';
 import 'package:lms/utils/app_consts.dart';
 import 'package:lms/widgets/custom_text.dart';
 import 'package:provider/provider.dart';
@@ -91,7 +92,38 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         deadline: data?.deadline,
                       );
                     },
-                  )
+                  ),
+                  // زر طلبات الطلاب
+                  Card(
+                    child: ListTile(
+                      leading: Icon(
+                        Icons.assignment,
+                        color: AppColors.primary,
+                        size: 30.r,
+                      ),
+                      title: Text(
+                        'طلبات الطلاب',
+                        style: TextStyle(
+                          fontSize: 16.sp,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      subtitle: const Text('إدارة طلبات الطلاب والدردشة معهم'),
+                      trailing: Icon(
+                        Icons.arrow_forward_ios,
+                        size: 20.r,
+                        color: AppColors.primary,
+                      ),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const TeacherRequestsScreen(),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
                 ],
               ),
             ),
