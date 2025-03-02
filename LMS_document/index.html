@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Onest academy LMS APP Documention</title>
+  <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon" />
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="assets/css/font-awesome.css" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="preconnect" href="https://fonts.gstatic.com/" />
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet" />
+</head>
+
+<body>
+
+  <main class="container-fluid">
+    <aside class="left-menu">
+      <nav>
+        <ul>
+          <!-- Menu Title -->
+          <li class="left-menu-title">
+            <h6>
+              <a href="#getting-started">Getting started</a>
+            </h6>
+          </li>
+
+          <li class="left-menu-item">
+            <a href="#introduction">
+              <span>Introduction</span>
+            </a>
+          </li>
+
+          <li class="left-menu-item">
+            <a href="#requirements">
+              <span>Requirements</span>
+            </a>
+          </li>
+          <li class="left-menu-item">
+            <a href="#recommended">
+              <span>Recommended</span>
+            </a>
+          </li>
+
+          <li class="left-menu-item">
+            <a href="#started">
+              <span>Get Started</span>
+            </a>
+          </li>
+
+          <!-- Menu Title -->
+          <li class="left-menu-title">
+            <h6>
+              <a href="#configuration">Android Configuration</a>
+            </h6>
+          </li>
+
+          <!-- Menu Title -->
+          <!-- <li class="left-menu-title">
+              <h6>
+                <a href="#how-to-install">How to install</a>
+              </h6>
+            </li> -->
+
+          <li class="left-menu-item">
+            <a href="#icons">
+              <span>Icons</span>
+            </a>
+          </li>
+          <li class="left-menu-item">
+            <a href="#dependencies">
+              <span>Get Dependencies</span>
+            </a>
+          </li>
+          <li class="left-menu-item">
+            <a href="#package-name">
+              <span>Change Package Name</span>
+            </a>
+          </li>
+
+          <!-- Users And Permissions  -->
+
+          <li class="left-menu-title">
+            <h6>
+              <a href="#run-build">Run & Build</a>
+            </h6>
+          </li>
+
+          <li class="left-menu-item">
+            <a href="#run-android-app">
+              <span>Run Android Application</span>
+            </a>
+          </li>
+
+          <!-- google-firebase-setup -->
+
+          <li class="left-menu-title">
+            <h6>
+              <a href="#google-firebase-setup">Google Firebase setup</a>
+            </h6>
+          </li>
+
+        </ul>
+      </nav>
+    </aside>
+
+    <aside class="main-content-area">
+      <div class="main-content container-fluid">
+        <!-- ============== Big Title Section ============================ -->
+        <div class="mt-40">
+          <h3 id="getting-started" class="first-title">
+            Welcome To Onest LMS Solution
+          </h3>
+        </div>
+
+        <!-- ============== Section ============================ -->
+        <section>
+          <h4 id="introduction" class="second-title">Introduction</h4>
+          <p>
+            Mobile apps developed using a flutter framework created by Google are open-source mobile application
+            development.
+            It is used to develop applications for Android and iOS, as well as being the primary method of creating
+            applications.
+            There are some configuration steps shared between android and iOS compilation. In this section, we will
+            cover those
+          </p>
+        </section>
+
+        <!-- ============== Section ============================ -->
+        <section>
+          <div class="content-wrapper px-4 py-2">
+            <h4 id="requirements" class="second-title">
+              Requirements
+            </h4>
+            <p>To edit this project you must have Flutter and Dart installed and configured successfully on your device
+              Install flutter</p>
+
+            <ul>
+              <li>
+                <span class="me-1"><i class="fa fa-paper-plane" aria-hidden="true"></i>Flutter (Channel stable, 3.0.1,
+                  on macOS 12.3.1 21E258 darwin-arm (Rosetta), locale en-BD)</span>
+
+              </li>
+              <li>
+                <span class="me-1"><i class="fa fa-paper-plane" aria-hidden="true"></i>Flutter version 3.0.1</span>
+
+              </li>
+              <li>
+                <span class="me-1"><i class="fa fa-paper-plane" aria-hidden="true"></i>Upstream repository
+                  https://github.com/flutter/flutter.git</span>
+
+              </li>
+              <li>
+                <span class="me-1"><i class="fa fa-paper-plane" aria-hidden="true"></i>Framework revision fb57da5f94 (13
+                  days ago), 2022-05-19 15:50:29 -0700</span>
+
+              </li>
+              <li>
+                <span class="me-1"><i class="fa fa-paper-plane" aria-hidden="true"></i>Engine revision caaafc5604</span>
+
+              </li>
+              <li>
+                <span class="me-1"><i class="fa fa-paper-plane" aria-hidden="true"></i>Dart version 2.17.1</span>
+
+              </li>
+              <li>
+                <span class="me-1"><i class="fa fa-paper-plane" aria-hidden="true"></i>DevTools version 2.12.2</span>
+
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- ============== Section ============================ -->
+        <section>
+          <div class="content-wrapper px-4 py-2">
+            <h4 id="recommended" class="second-title">
+              Recommended
+            </h4>
+
+            <div class="video-area">
+              <p>Android Studio Installation(Windows)</p>
+              <iframe src="https://www.youtube.com/embed/0zx_eFyHRU0"
+                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""
+                width="860" height="315" frameborder="0"></iframe>
+
+              <p>Android Studio Installation(Mac)</p>
+              <iframe src="https://www.youtube.com/embed/rNUoFXxT30U"
+                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""
+                width="860" height="315" frameborder="0"></iframe>
+            </div>
+
+            <!-- Video  -->
+            <div class="video-area">
+              <p>Flutter Installation on Windows</p>
+              <iframe src="https://www.youtube.com/embed/fDnqXmLSqtg"
+                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""
+                width="860" height="315" frameborder="0"></iframe>
+
+              <p>Flutter Installation on Mac</p>
+              <iframe src="https://www.youtube.com/embed/mAQb57z7DZU"
+                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""
+                width="860" height="315" frameborder="0"></iframe>
+
+              <p>If you have updated you mac to Catalina from mojavi or earlier version then you may fetch some
+                issues.Please follow bellow video to fix it.</p>
+              <iframe src="https://www.youtube.com/embed/ZwUGHiroGBo"
+                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""
+                width="860" height="315" frameborder="0"></iframe>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============== Section ============================ -->
+
+        <section>
+          <div class="content-wrapper px-4 py-2">
+            <h4 id="started" class="second-title">
+              Get Started
+            </h4>
+            <ul>
+              <li>
+                <span class="me-1"><i class="fa fa-paper-plane" aria-hidden="true"></i></span>
+                Download and unzip the Flutter App, use your preferred IDE (Android Studio / Visual Code / IntelliJ) to
+                open the project.
+              </li>
+              <img src="images/open_project.png" alt="" class="img-responsive mw-mh-580-560" />
+              <!-- ============== Section ============================ -->
+              <section>
+                <h4 id="dependencies" class="second-title">Get Dependencies</h4>
+                <div class="content-wrapper px-4 py-2">
+                  <ul>
+                    <li>
+                      <span class="me-1"><i class="fa fa-paper-plane" aria-hidden="true"></i></span>
+                      Just run the following command
+                    </li>
+                    &nbsp &nbsp &nbsp flutter clear
+                    <br>
+                    &nbsp &nbsp &nbsp flutter pub get
+                  </ul>
+                </div>
+              </section>
+              <!-- ============== Big Title Section ============================ -->
+              <div class="mt-70 border-top">
+                <h3 id="run-build" class="first-title">
+                  Run & Build
+                </h3>
+              </div>
+
+              <!-- ============== Section ============================ -->
+              <section>
+                <div class="content-wrapper px-4 py-2">
+                  <div class="content-header"></div>
+                </div>
+                <h4 id="run-android-app" class="second-title">Run Android Application</h4>
+                <div class="content-wrapper px-4 py-2">
+                  <ul>
+                    <li>
+                      <span class="me-1"><i class="fa fa-paper-plane" aria-hidden="true"></i></span>
+                      In the target selector, select an Android device for running the app. If none are listed as
+                      available, select Tools> Android > AVD Manager and create one there. For details, see Managing
+                      AVDs. Click the run icon in the toolbar, or invoke the menu item Run > Run. Locate the main
+                      Android Studio toolbar:
+                    </li>
+                    <img src="images/iphone_max.png" alt="" class="img-responsive mw-mh-580-560" />
+                    <li>
+                      <span class="me-1"><i class="fa fa-paper-plane" aria-hidden="true"></i></span>
+                      If you don't use Android Studio or IntelliJ you can use the command line to run your application
+                      using the following command
+                    </li>
+                    <pre>
+                  <code>
+                    flutter run
+                  </code>
+                </pre>
+                  </ul>
+                </div>
+              </section>
+
+
+              <h4 id="build-and-install-app" class="second-title">When you finish server setup and sync with your mobile
+                application</h4>
+
+              <li>
+                <span class="me-1"><i class="fa fa-paper-plane" aria-hidden="true"></i></span>
+                Open utils/app_const.dart and edit the remote link to connect your mobile app with your admin panel
+              </li>
+              <img src="images/get_start.png" alt="" class="img-responsive mw-mh-580-560" />
+              <li>
+                <span class="me-1"><i class="fa fa-paper-plane" aria-hidden="true"></i></span>
+                Go to android/app/src/main/res/mipmap and replace it with your logo or app icon.
+              </li>
+              <img src="images/app_icon_change.png" alt="" class="img-responsive mw-mh-580-560" />
+            </ul>
+          </div>
+        </section>
+
+        <!-- ============== Section ============================ -->
+        <section>
+          <h4 id="build-and-install-app" class="second-title">
+            Build and Install App
+          </h4>
+          <div class="content-wrapper px-4 py-2">
+            <ul>
+              <li>
+                <span class="me-1"><i class="fa fa-paper-plane" aria-hidden="true"></i></span>
+                After you make all your changes and customizations save all your project, Open the console, navigate to
+                your project folder and execute the following command to build your app
+                flutter build apk --release
+              </li>
+              <li>
+                <span class="me-1"><i class="fa fa-paper-plane" aria-hidden="true"></i></span>
+                If you are deploying the app to the Play Store, it's recommended to use app bundles or split the APK to
+                reduce the APK size.
+              </li>
+              <li>
+                <span class="me-1"><i class="fa fa-paper-plane" aria-hidden="true"></i></span>
+                To generate an app bundle, run: flutter build appbundle --target-platform
+                android-arm,android-arm64,android-x64 <br>
+                Learn more on https://developer.android.com/guide/app-bundle
+              </li>
+              <li>
+                <span class="me-1"><i class="fa fa-paper-plane" aria-hidden="true"></i></span>
+                To split the APKs per ABI, run: flutter build apk --target-platform
+                android-arm,android-arm64,android-x64 --split-per-abi <br>
+                Learn more on https://developer.android.com/studio/build/configure-apk-splits#configure-abi-split
+              </li>
+              <li>
+                <span class="me-1"><i class="fa fa-paper-plane" aria-hidden="true"></i></span>
+                You should get the APK file in the build/output/apk folder, to install your application on your
+                connected device run the following command
+              </li>
+              &nbsp &nbsp &nbsp flutter run --release
+            </ul>
+          </div>
+        </section>
+
+        <!-- ============== Big Title Section ============================ -->
+        <div class="mt-70 border-top">
+          <h3 id="configuration" class="first-title">Android Configuration</h3>
+        </div>
+
+        <!-- ============== Section ============================ -->
+        <section>
+          <h4 id="icons" class="second-title">Icons</h4>
+          <div class="content-wrapper px-4 py-2">
+            <ul>
+              <li>
+                <span class="me-1"><i class="fa fa-paper-plane" aria-hidden="true"></i></span>
+                Create your app icon (ic_launcher.png) and notification icon(fav_logo.png) folders How to generate an
+                app icon? after you generate icons folder replace the following folders:
+              </li>
+              <ul>
+                <li><span class="me-1"><i class="fa fa-paper-plane" aria-hidden="true"></i></span> /mipmap-hdpi in
+                  /android/app/src/main/res/ folder</li>
+                <li><span class="me-1"><i class="fa fa-paper-plane" aria-hidden="true"></i></span> /mipmap-mdpi in
+                  /android/app/src/main/res/ folder</li>
+                <li><span class="me-1"><i class="fa fa-paper-plane" aria-hidden="true"></i></span> /mipmap-xhdpi in
+                  /android/app/src/main/res/ folder</li>
+                <li><span class="me-1"><i class="fa fa-paper-plane" aria-hidden="true"></i></span> /mipmap-xxhdpi in
+                  /android/app/src/main/res/ folder</li>
+                <li><span class="me-1"><i class="fa fa-paper-plane" aria-hidden="true"></i></span> /mipmap-xxxhdpi in
+                  /android/app/src/main/res/ folder</li>
+              </ul>
+              &nbsp &nbsp &nbsp Note: Must rename app icon ic_launcher and notification icon fav_logo
+            </ul>
+          </div>
+        </section>
+
+        <!-- ============== Section ============================ -->
+        <section>
+          <h4 id="package-name" class="second-title">Change Package Name</h4>
+          <div class="content-wrapper px-4 py-2">
+            <p>If you want to change the package name following the next steps</p>
+            <ul>
+              <li>
+                <span class="me-1"><i class="fa fa-paper-plane" aria-hidden="true"></i></span>
+                Open /android/app/build.gradle and change the package name
+                <pre class="highlight" style="position: relative"><code>defaultConfig {
+                        applicationId "<REPLACE WITH YOUR PACKAGE NAME>" // this is the package name
+                        minSdkVersion 21
+                        targetSdkVersion 32
+                        versionCode flutterVersionCode.toInteger()
+                        versionName flutterVersionName
+                        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+                    }
+                  </code>
+                  </pre>
+              </li>
+              Then run the following command
+              <br>
+              &nbsp &nbsp &nbsp flutter pub get
+              <br>
+              <br>
+              <li><span class="me-1"><i class="fa fa-paper-plane" aria-hidden="true"></i></span>Open
+                /android/app/src/main/AndroidManifest.xml , /android/app/src/profil/AndroidManifest.xml,
+                /android/app/src/debug/AndroidManifest.xml and specify your:
+                <ul>
+                  <li><span class="me-1"><i class="fa fa-dot-circle" aria-hidden="true"></i></span>YOUR PACKAGE NAME
+                  </li>
+                  <li><span class="me-1"><i class="fa fa-dot-circle" aria-hidden="true"></i></span>YOUR APPLICATION NAME
+                  </li>
+                </ul>
+              </li>
+
+              <br>
+
+              <div class="language-bash highlighter-rouge">
+                <div class="highlight">
+                  <img src="images/mainfest.png" alt="" class="img-responsive mw-mh-580-560" />
+
+                </div>
+              </div>
+              <br>
+              <li><i class="fa fa-paper-plane" aria-hidden="true"></i></span>Open /android/app/src/main/kotlin/<Your
+                  Package name folders>/MainActivity.kt and change the package name</li>
+              <li><i class="fa fa-paper-plane" aria-hidden="true"></i></span>After changing package name you have to
+                register new package in firebase and download service.json file <br>and paste that file in path =>
+                android/app folder </li>
+            </ul>
+          </div>
+        </section>
+
+
+        <!-- ============== Big Title Section ============================ -->
+        <div class="mt-70 border-top">
+          <h3 id="google-firebase-setup" class="first-title">Google Firebase Setup</h3>
+        </div>
+
+        <div class="video-area">
+          <p>firebase setup video guide</p>
+          <iframe src="https://www.youtube.com/embed/0ia7arK9emk"
+            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""
+            width="860" height="315" frameborder="0"></iframe>
+
+
+          <!-- ============== Section ============================ -->
+          <section>
+            <div class="content-wrapper px-4 py-2">
+              <div class="content-header"></div>
+            </div>
+            <img src="images/firebase.png" alt="" class="img-responsive mw-mh-580-560" />
+            <img src="images/project_create.png" alt="" class="img-responsive mw-mh-580-560" />
+            <img src="images/add_firebase.png" alt="" class="img-responsive mw-mh-580-560" />
+            <p>Goto Firebase Console And login with your Google account.
+              Click on Create a project or Add Project.
+              Then enter project name and follow then Firebase steps to complete.
+              After Completing project creation click continue to redirect project dashboard.
+            </p>
+          </section>
+
+          <!-- ============== Section ============================ -->
+          <section>
+            <h4 id="android" class="second-title">
+              Android
+            </h4>
+            <div class="content-wrapper px-4 py-2">
+              <div class="content-header"></div>
+              <p>
+                Click on Android Icon Then enter Android Package Name, App Name and click on register app.
+              </p>
+              <p>
+                Download google-services.json file and copy/paste it to android studio project directory.Location::
+                project » android » app. Done!
+              </p>
+              <p>Note:Android package name should be the remain same with your studio project else build will not be
+                work.</p>
+            </div>
+          </section>
+          <!-- ============== Section ============================ -->
+          <section>
+            <h4 id="iOS" class="second-title">iOS</h4>
+            <div class="content-wrapper px-4 py-2">
+              <div class="content-header"></div>
+              <p>
+                Click on iOS Icon Then enter iOS bundle ID, App Name and click on register app. Download
+                GoogleService-Info.plist file and copy/paste it to android studio project directory.Location:: project »
+                ios » Runner. Done!
+              </p>
+              <p>Note:iOS Bundle ID should be the remain same with your studio project else build will not be work.</p>
+            </div>
+          </section>
+          <!-- ============== Big Title Section ============================ -->
+          <!-- <div class="mb-40 pb-40 border-bottom">
+                    <h3 id="log-in" class="first-title">Log in</h3>
+                </div> -->
+
+          <!-- ============== Big Title Section ============================ -->
+          <div class="mb-40 pb-40">
+            <h3 id="release-log" class="first-title">Thank you</h3>
+            <p>
+              Again, thank you for purchasing . If you need some help, or
+              support please use email or contact form via codecanyon
+              <a href="#" target="_blank">Profile site</a>
+              <br />
+              Hope you happy with the onest CRM Solution, all the best with your business.
+            </p>
+
+            <h4 class="second-title">Change Log</h4>
+
+            <!-- <ul class="right">
+              <li><small>Multi language</small></li>
+              <li><small>RTL support</small></li>
+              <li><small>CDN include</small></li>
+              <li><small>Integrating google 2FA in sign in</small></li>
+              <li><small>Dynamic meta tags</small></li>
+              <li><small>Dynamic all the logos entire application</small></li>
+              <li>
+                <small>Password resetting in admin panel issue fixed</small>
+              </li>
+              <li><small>Notification show in frontend</small></li>
+              <li>
+                <small
+                  >Changing options for preloader icon and admin panel
+                  icon</small
+                >
+              </li>
+              <li><small>Dynamic footer content</small></li>
+              <li><small>User side FAQ display issues fixed</small></li>
+              <li>
+                <small>Platform income show in admin panel more smooth</small>
+              </li>
+              <li><small>Dynamic branding entire application</small></li>
+            </ul> -->
+            <!-- <div class="code-block">Version 1.0.0 (14th December 2021)</div> -->
+            <p>
+              &copy;
+              <script>
+                var d = new Date();
+                document.write(d.getFullYear());
+              </script>
+              <a href="#">Onest Tech</a>
+            </p>
+          </div>
+        </div>
+    </aside>
+  </main>
+
+  <script src="assets/js/jquery.2.2.4.min.js"></script>
+  <script src="assets/js/jquery.nicescroll.min.js"></script>
+  <script src="assets/js/bootstrap.min.js"></script>
+  <script src="assets/js/custom.js"></script>
+</body>
+
+</html>

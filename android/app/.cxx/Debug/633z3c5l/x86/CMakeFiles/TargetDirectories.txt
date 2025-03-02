@@ -1,0 +1,2 @@
+/Users/nexti/Documents/Private/Demos/NS/Mobile Apps/lms-mobile-app/android/app/.cxx/Debug/633z3c5l/x86/CMakeFiles/edit_cache.dir
+/Users/nexti/Documents/Private/Demos/NS/Mobile Apps/lms-mobile-app/android/app/.cxx/Debug/633z3c5l/x86/CMakeFiles/rebuild_cache.dir
