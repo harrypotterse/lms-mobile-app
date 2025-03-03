@@ -105,6 +105,8 @@ class Message {
   String? userName;
   String? userEmail;
   String? userImage;
+  String? senderType;
+  String? date;
 
   Message({
     this.id,
@@ -119,6 +121,8 @@ class Message {
     this.userName,
     this.userEmail,
     this.userImage,
+    this.senderType,
+    this.date,
   });
 
   factory Message.fromJson(Map<String, dynamic> json) => Message(
@@ -134,5 +138,7 @@ class Message {
         userName: json["user_name"],
         userEmail: json["user_email"],
         userImage: json["user_image"],
+        senderType: json["sender_type"],
+        date: json["date"],
       );
 } 

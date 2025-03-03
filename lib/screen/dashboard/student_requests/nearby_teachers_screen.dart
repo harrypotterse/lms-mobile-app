@@ -9,6 +9,7 @@ import 'package:lms/screen/dashboard/student_requests/student_requests_screen.da
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:lms/screen/dashboard/student_requests/student_requests_provider.dart';
+import 'package:lms/utils/app_theme.dart';
 
 class NearbyTeachersScreen extends StatefulWidget {
   const NearbyTeachersScreen({Key? key}) : super(key: key);
@@ -30,52 +31,50 @@ class _NearbyTeachersScreenState extends State<NearbyTeachersScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF5F5F5), // خلفية رمادية فاتحة
+      backgroundColor: AppTheme.background,
       appBar: AppBar(
-        title: const Text(
+        title: Text(
           'المدرسين القريبين',
-          style: TextStyle(color: Colors.white),
+          style: AppTheme.headingMedium.copyWith(color: Colors.white),
         ),
-        backgroundColor: AppColors.primary,
-        elevation: 2,
+        backgroundColor: AppTheme.primary,
+        elevation: 0,
         actions: [
           IconButton(
             icon: const Icon(Icons.history, color: Colors.white),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const StudentRequestsScreen(),
-                ),
-              );
-            },
+            onPressed: () => Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const StudentRequestsScreen()),
+            ),
           ),
           IconButton(
             icon: const Icon(Icons.refresh, color: Colors.white),
-            onPressed: () {
-              context.read<NearbyTeachersProvider>().getNearbyTeachers();
-            },
+            onPressed: () => context.read<NearbyTeachersProvider>().getNearbyTeachers(),
           ),
         ],
       ),
       body: Column(
         children: [
-          // حقل البحث
-          Padding(
+          // حقل البحث محسن
+          Container(
             padding: EdgeInsets.all(16.r),
-            child: TextField(
-              onChanged: (value) {
-                context.read<NearbyTeachersProvider>().setSearchQuery(value);
-              },
-              decoration: InputDecoration(
-                hintText: 'ابحث عن مدرس...',
-                prefixIcon: const Icon(Icons.search),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10.r),
+            decoration: BoxDecoration(
+              color: AppTheme.surface,
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.05),
+                  blurRadius: 5,
+                  offset: const Offset(0, 2),
                 ),
-                fillColor: Colors.white,
-                filled: true,
+              ],
+            ),
+            child: TextField(
+              decoration: AppTheme.inputDecoration(label: 'ابحث عن مدرس...').copyWith(
+                prefixIcon: Icon(Icons.search, color: AppTheme.primary),
+                hintStyle: AppTheme.bodyMedium,
               ),
+              style: AppTheme.bodyLarge,
+              onChanged: (value) => context.read<NearbyTeachersProvider>().setSearchQuery(value),
             ),
           ),
           
@@ -84,7 +83,11 @@ class _NearbyTeachersScreenState extends State<NearbyTeachersScreen> {
             child: Consumer<NearbyTeachersProvider>(
               builder: (context, provider, child) {
                 if (provider.isLoading) {
-                  return const Center(child: CircularProgressIndicator());
+                  return Center(
+                    child: CircularProgressIndicator(
+                      valueColor: AlwaysStoppedAnimation<Color>(AppTheme.primary),
+                    ),
+                  );
                 }
 
                 if (provider.filteredTeachers.isEmpty) {
@@ -95,13 +98,13 @@ class _NearbyTeachersScreenState extends State<NearbyTeachersScreen> {
                         Icon(
                           Icons.person_search,
                           size: 70.r,
-                          color: Colors.grey,
+                          color: AppTheme.textSecondary,
                         ),
                         SizedBox(height: 16.h),
-                        const Text(
+                        Text(
                           'لا يوجد مدرسين حاليًا',
-                          style: TextStyle(
-                            color: Colors.grey,
+                          style: AppTheme.bodyLarge.copyWith(
+                            color: AppTheme.textSecondary,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -138,91 +141,77 @@ class TeacherCard extends StatelessWidget {
       return const SizedBox.shrink();
     }
 
-    return Card(
-      elevation: 3,
+    return Container(
       margin: EdgeInsets.only(bottom: 16.r),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12.r),
-      ),
-      child: InkWell(
-        onTap: () {
-          if (teacher.id != null) {
-            _showCreateRequestModal(context, teacher);
-          }
-        },
-        child: Padding(
-          padding: EdgeInsets.all(16.r),
-          child: Row(
-            children: [
-              CircleAvatar(
-                radius: 30.r,
-                backgroundColor: AppColors.primary,
-                child: Text(
-                  teacher.name?.substring(0, 1).toUpperCase() ?? 'T',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18.sp,
+      decoration: AppTheme.cardDecoration,
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          onTap: () {
+            if (teacher.id != null) {
+              _showCreateRequestModal(context, teacher);
+            }
+          },
+          borderRadius: BorderRadius.circular(12.r),
+          child: Padding(
+            padding: EdgeInsets.all(16.r),
+            child: Row(
+              children: [
+                CircleAvatar(
+                  radius: 30.r,
+                  backgroundColor: AppTheme.primary,
+                  child: Text(
+                    teacher.name?.substring(0, 1).toUpperCase() ?? 'T',
+                    style: AppTheme.headingMedium.copyWith(color: Colors.white),
                   ),
                 ),
-              ),
-              SizedBox(width: 16.w),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      teacher.name ?? '',
-                      style: TextStyle(
-                        fontSize: 16.sp,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black87,
+                SizedBox(width: 16.w),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        teacher.name ?? '',
+                        style: AppTheme.bodyLarge.copyWith(fontWeight: FontWeight.bold),
                       ),
-                    ),
-                    SizedBox(height: 4.h),
-                    Text(
-                      teacher.email ?? '',
-                      style: TextStyle(
-                        fontSize: 14.sp,
-                        color: Colors.grey[700],
+                      SizedBox(height: 4.h),
+                      Text(
+                        teacher.email ?? '',
+                        style: AppTheme.bodyMedium,
                       ),
-                    ),
-                    if (teacher.cityName != null || teacher.provinceName != null)
-                      Padding(
-                        padding: EdgeInsets.only(top: 8.h),
-                        child: Text(
-                          [
-                            teacher.nationCity,
-                            teacher.provinceName,
-                            teacher.cityName
-                          ].where((item) => item != null && item.isNotEmpty).join(' - '),
-                          style: TextStyle(
-                            fontSize: 12.sp,
-                            color: Colors.grey[600],
+                      if (teacher.cityName != null || teacher.provinceName != null)
+                        Padding(
+                          padding: EdgeInsets.only(top: 8.h),
+                          child: Text(
+                            [
+                              teacher.nationCity,
+                              teacher.provinceName,
+                              teacher.cityName
+                            ].where((item) => item != null && item.isNotEmpty).join(' - '),
+                            style: AppTheme.bodyMedium,
                           ),
                         ),
-                      ),
-                    if (teacher.distanceText != null && teacher.distanceText != '0 km')
-                      Padding(
-                        padding: EdgeInsets.only(top: 4.h),
-                        child: Text(
-                          'المسافة: ${teacher.distanceText}',
-                          style: TextStyle(
-                            fontSize: 12.sp,
-                            color: AppColors.primary,
-                            fontWeight: FontWeight.w500,
+                      if (teacher.distanceText != null && teacher.distanceText != '0 km')
+                        Padding(
+                          padding: EdgeInsets.only(top: 4.h),
+                          child: Text(
+                            'المسافة: ${teacher.distanceText}',
+                            style: AppTheme.bodyMedium.copyWith(
+                              color: AppTheme.primary,
+                              fontWeight: FontWeight.w500,
+                            ),
                           ),
                         ),
-                      ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-              Icon(
-                Icons.arrow_forward_ios,
-                size: 20.r,
-                color: AppColors.primary,
-              ),
-            ],
+                Icon(
+                  Icons.arrow_forward_ios,
+                  size: 20.r,
+                  color: AppTheme.primary,
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -257,7 +246,7 @@ class TeacherCard extends StatelessWidget {
             Container(
               padding: EdgeInsets.all(16.r),
               decoration: BoxDecoration(
-                color: AppColors.primary,
+                color: AppTheme.primary,
                 borderRadius: BorderRadius.vertical(top: Radius.circular(20.r)),
               ),
               child: Row(
@@ -291,7 +280,7 @@ class TeacherCard extends StatelessWidget {
                       // معلومات المدرس
                       ListTile(
                         leading: CircleAvatar(
-                          backgroundColor: AppColors.primary,
+                          backgroundColor: AppTheme.primary,
                           child: Text(
                             teacher.name?.substring(0, 1).toUpperCase() ?? 'T',
                             style: const TextStyle(color: Colors.white),
@@ -358,7 +347,7 @@ class TeacherCard extends StatelessWidget {
                 height: 50.h,
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: AppColors.primary,
+                    backgroundColor: AppTheme.primary,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8.r),
                     ),

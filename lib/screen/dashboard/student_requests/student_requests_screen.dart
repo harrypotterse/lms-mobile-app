@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:lms/screen/dashboard/student_requests/student_requests_provider.dart';
 import 'package:lms/screen/dashboard/teacher_requests/chat_screen.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lms/utils/app_consts.dart';
+import 'package:lms/utils/app_theme.dart';
 import 'package:lms/data/model/teacher_request/student_requests_response.dart';
 
 class StudentRequestsScreen extends StatefulWidget {
@@ -26,27 +26,29 @@ class _StudentRequestsScreenState extends State<StudentRequestsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF5F5F5),
+      backgroundColor: AppTheme.background,
       appBar: AppBar(
-        title: const Text(
+        title: Text(
           'طلباتي',
-          style: TextStyle(color: Colors.white),
+          style: AppTheme.headingMedium.copyWith(color: Colors.white),
         ),
-        backgroundColor: AppColors.primary,
-        elevation: 2,
+        backgroundColor: AppTheme.primary,
+        elevation: 0,
         actions: [
           IconButton(
             icon: const Icon(Icons.refresh, color: Colors.white),
-            onPressed: () {
-              context.read<StudentRequestsProvider>().getStudentRequests();
-            },
+            onPressed: () => context.read<StudentRequestsProvider>().getStudentRequests(),
           ),
         ],
       ),
       body: Consumer<StudentRequestsProvider>(
         builder: (context, provider, child) {
           if (provider.isLoading) {
-            return const Center(child: CircularProgressIndicator());
+            return Center(
+              child: CircularProgressIndicator(
+                valueColor: AlwaysStoppedAnimation<Color>(AppTheme.primary),
+              ),
+            );
           }
 
           if (provider.requests.isEmpty) {
@@ -57,20 +59,20 @@ class _StudentRequestsScreenState extends State<StudentRequestsScreen> {
                   Icon(
                     Icons.assignment_outlined,
                     size: 70.r,
-                    color: Colors.grey,
+                    color: AppTheme.textSecondary,
                   ),
                   SizedBox(height: 16.h),
-                  const Text(
+                  Text(
                     'لا توجد طلبات حالياً',
-                    style: TextStyle(
-                      color: Colors.grey,
+                    style: AppTheme.bodyLarge.copyWith(
+                      color: AppTheme.textSecondary,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                   SizedBox(height: 8.h),
-                  const Text(
-                    'قم بإنشاء طلب جديد من شاشة المدرسين القريبين',
-                    style: TextStyle(color: Colors.grey),
+                  Text(
+                    'يمكنك إرسال طلب جديد من صفحة المدرسين القريبين',
+                    style: AppTheme.bodyMedium,
                     textAlign: TextAlign.center,
                   ),
                 ],
@@ -83,148 +85,122 @@ class _StudentRequestsScreenState extends State<StudentRequestsScreen> {
             itemCount: provider.requests.length,
             itemBuilder: (context, index) {
               final request = provider.requests[index];
-              return _buildRequestCard(context, request);
+              return RequestCard(request: request);
             },
           );
         },
       ),
     );
   }
+}
 
-  // بناء كارت الطلب
-  Widget _buildRequestCard(BuildContext context, StudentRequest request) {
-    return ExpansionTile(
-      collapsedBackgroundColor: Colors.white,
-      backgroundColor: Colors.white,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12.r),
-      ),
-      collapsedShape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12.r),
-      ),
-      title: Row(
+class RequestCard extends StatelessWidget {
+  final StudentRequest request;
+
+  const RequestCard({Key? key, required this.request}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.only(bottom: 16.r),
+      decoration: AppTheme.cardDecoration,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+          // رأس البطاقة
+          Container(
+            padding: EdgeInsets.all(16.r),
+            decoration: BoxDecoration(
+              color: _getStatusColor(request.approved).withOpacity(0.1),
+              borderRadius: BorderRadius.vertical(top: Radius.circular(12.r)),
+            ),
+            child: Row(
               children: [
-                Text(
-                  request.title ?? '',
-                  style: TextStyle(
-                    fontSize: 16.sp,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black87,
-                  ),
+                Icon(
+                  _getStatusIcon(request.approved),
+                  color: _getStatusColor(request.approved),
+                  size: 24.r,
                 ),
-                SizedBox(height: 4.h),
+                SizedBox(width: 8.w),
                 Text(
-                  'الأستاذ: ${request.teacherName ?? ''}',
-                  style: TextStyle(
-                    fontSize: 14.sp,
-                    color: Colors.grey[700],
+                  _getStatusText(request.approved),
+                  style: AppTheme.bodyLarge.copyWith(
+                    color: _getStatusColor(request.approved),
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
               ],
             ),
           ),
-          Container(
-            padding: EdgeInsets.symmetric(
-              horizontal: 12.w,
-              vertical: 6.h,
-            ),
-            decoration: BoxDecoration(
-              color: _getStatusColor(request.approved).withOpacity(0.1),
-              borderRadius: BorderRadius.circular(20.r),
-              border: Border.all(
-                color: _getStatusColor(request.approved).withOpacity(0.5),
-                width: 1,
-              ),
-            ),
-            child: Text(
-              _getStatusText(request.approved),
-              style: TextStyle(
-                color: _getStatusColor(request.approved),
-                fontSize: 12.sp,
-                fontWeight: FontWeight.w600,
-              ),
+
+          // محتوى البطاقة
+          Padding(
+            padding: EdgeInsets.all(16.r),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                _buildInfoRow('المدرس', request.teacherName ?? ''),
+                SizedBox(height: 8.h),
+                _buildInfoRow('العنوان', request.title ?? ''),
+                SizedBox(height: 8.h),
+                _buildInfoRow('الموضوع', request.subject ?? ''),
+                SizedBox(height: 8.h),
+                _buildInfoRow('التاريخ', request.date ?? ''),
+                if (request.reason != null) ...[
+                  SizedBox(height: 8.h),
+                  _buildInfoRow('السبب', request.reason!),
+                ],
+              ],
             ),
           ),
+
+          // زر المحادثة (إذا تمت الموافقة)
+          if (request.approved == 1)
+            Padding(
+              padding: EdgeInsets.all(16.r),
+              child: ElevatedButton.icon(
+                onPressed: () {
+                  if (request.id != null) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ChatScreen(
+                          requestId: request.id!,
+                        ),
+                      ),
+                    );
+                  }
+                },
+                style: AppTheme.primaryButton,
+                icon: const Icon(Icons.chat),
+                label: const Text('الذهاب إلى المحادثة'),
+              ),
+            ),
         ],
       ),
-      children: [
-        Container(
-          padding: EdgeInsets.all(16.r),
-          color: Colors.white,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              _buildInfoRow('الموضوع', request.subject ?? ''),
-              SizedBox(height: 8.h),
-              if (request.reason != null && request.reason!.isNotEmpty)
-                _buildInfoRow('السبب', request.reason ?? ''),
-              SizedBox(height: 8.h),
-              _buildInfoRow('تاريخ الطلب', request.date ?? ''),
-              SizedBox(height: 16.h),
-              
-              // زر الدردشة (يظهر فقط إذا كان الطلب مقبول)
-              if (request.approved == 1)
-                SizedBox(
-                  width: double.infinity,
-                  child: ElevatedButton.icon(
-                    onPressed: () {
-                      if (request.id != null) {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => ChatScreen(
-                              requestId: request.id!,
-                            ),
-                          ),
-                        );
-                      }
-                    },
-                    icon: const Icon(Icons.chat),
-                    label: const Text('الذهاب إلى المحادثة'),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColors.primary,
-                      padding: EdgeInsets.symmetric(vertical: 12.h),
-                    ),
-                  ),
-                ),
-            ],
-          ),
-        ),
-      ],
     );
   }
 
-  // صف بيانات الطلب
   Widget _buildInfoRow(String label, String value) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           '$label: ',
-          style: TextStyle(
-            fontSize: 14.sp,
-            color: Colors.grey[700],
+          style: AppTheme.bodyLarge.copyWith(
             fontWeight: FontWeight.bold,
           ),
         ),
         Expanded(
           child: Text(
             value,
-            style: TextStyle(
-              fontSize: 14.sp,
-              color: Colors.black87,
-            ),
+            style: AppTheme.bodyLarge,
           ),
         ),
       ],
     );
   }
 
-  // الحصول على نص حالة الطلب
   String _getStatusText(int? status) {
     switch (status) {
       case 1:
@@ -236,15 +212,25 @@ class _StudentRequestsScreenState extends State<StudentRequestsScreen> {
     }
   }
 
-  // الحصول على لون حالة الطلب
   Color _getStatusColor(int? status) {
     switch (status) {
       case 1:
-        return Colors.green;
+        return AppTheme.success;
       case 0:
-        return Colors.orange;
+        return AppTheme.warning;
       default:
-        return Colors.grey;
+        return AppTheme.textSecondary;
+    }
+  }
+
+  IconData _getStatusIcon(int? status) {
+    switch (status) {
+      case 1:
+        return Icons.check_circle;
+      case 0:
+        return Icons.access_time;
+      default:
+        return Icons.help;
     }
   }
 } 

@@ -67,12 +67,26 @@ class StudentRequestsProvider extends ChangeNotifier {
   // إرسال رسالة جديدة
   Future<bool> sendMessage(int requestId, String message) async {
     try {
-      final response = await ApiService.getDio()!
-          .post('https://lms.null-safety.com/api/v1/student/requests/$requestId/message?message=$message');
+      final formData = {
+        'request_id': requestId.toString(),
+        'message': message,
+        'receiver_type': 'teacher', // إضافة نوع المستقبل
+      };
 
-      // تحديث الرسائل بعد الإرسال
-      await getRequestDetails(requestId);
-      return true;
+      final response = await ApiService.getDio()!.post(
+        'https://lms.null-safety.com/api/v1/student/messages',
+        data: formData,
+      );
+
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        // تحديث تفاصيل الطلب مباشرة بعد إرسال الرسالة
+        await getRequestDetails(requestId);
+        notifyListeners();
+        return true;
+      }
+
+      debugPrint('Send Message Response: ${response.data}');
+      return false;
     } catch (e) {
       debugPrint('Error sending message: $e');
       return false;
