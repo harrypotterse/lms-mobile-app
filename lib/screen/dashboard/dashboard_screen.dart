@@ -5,9 +5,11 @@ import 'package:lms/screen/dashboard/widgets/account_balance_cart.dart';
 import 'package:lms/screen/dashboard/widgets/summary_cart.dart';
 import 'package:lms/screen/drawer/widgets/all_assignment_list_cart.dart';
 import 'package:lms/screen/dashboard/teacher_requests/teacher_requests_screen.dart';
+import 'package:lms/screen/dashboard/student_requests/nearby_teachers_screen.dart';
 import 'package:lms/utils/app_consts.dart';
 import 'package:lms/widgets/custom_text.dart';
 import 'package:provider/provider.dart';
+import 'package:lms/screen/dashboard/student_requests/nearby_teachers_provider.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({Key? key}) : super(key: key);
@@ -50,7 +52,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                           total: provider
                                   .dashboardResponse?.data?.purchaseAmounts
                                   .toString() ??
-                              "",
+                              '',
                           type: "Purchase",
                           title: "Purchase Count",
                         ),
@@ -76,12 +78,17 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   SizedBox(
                     height: 12.h,
                   ),
-                  ListView.builder(
+                  GridView.builder(
                     physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
                     itemCount:
                         provider.dashboardResponse?.data?.assignments?.length ??
                             0,
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 1,
+                      childAspectRatio: 3,
+                    ),
                     itemBuilder: (context, index) {
                       final data =
                           provider.dashboardResponse?.data?.assignments?[index];
@@ -119,6 +126,41 @@ class _DashboardScreenState extends State<DashboardScreen> {
                           context,
                           MaterialPageRoute(
                             builder: (context) => const TeacherRequestsScreen(),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                  // زر البحث عن مدرسين (للطلاب)
+                  SizedBox(height: 12.h),
+                  Card(
+                    child: ListTile(
+                      leading: Icon(
+                        Icons.people,
+                        color: AppColors.primary,
+                        size: 30.r,
+                      ),
+                      title: Text(
+                        'البحث عن مدرسين',
+                        style: TextStyle(
+                          fontSize: 16.sp,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      subtitle: const Text('ابحث عن مدرسين قريبين وأرسل طلبات المساعدة'),
+                      trailing: Icon(
+                        Icons.arrow_forward_ios,
+                        size: 20.r,
+                        color: AppColors.primary,
+                      ),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ChangeNotifierProvider(
+                              create: (context) => NearbyTeachersProvider(),
+                              child: const NearbyTeachersScreen(),
+                            ),
                           ),
                         );
                       },

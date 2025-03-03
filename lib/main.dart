@@ -12,12 +12,23 @@ import 'package:lms/web/web_landing_page.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:lms/screen/dashboard/teacher_requests/teacher_requests_provider.dart';
+import 'package:lms/screen/dashboard/student_requests/student_requests_provider.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     statusBarColor: Color(0xffFFFFFF), // status bar color
   ));
-  runApp(const MyApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => LogInProvider()),
+        ChangeNotifierProvider(create: (_) => ConnectivityProvider()),
+        ChangeNotifierProvider(create: (_) => TeacherRequestsProvider()),
+        ChangeNotifierProvider(create: (_) => StudentRequestsProvider()),
+      ],
+      child: const MyApp(),
+    ),
+  );
   configLoading();
 }
 
@@ -51,6 +62,7 @@ class MyApp extends StatelessWidget {
                 ),
                 ChangeNotifierProvider(create: (_) => ConnectivityProvider()),
                 ChangeNotifierProvider(create: (_) => TeacherRequestsProvider()),
+                ChangeNotifierProvider(create: (_) => StudentRequestsProvider()),
               ],
               child: MaterialApp(
                 debugShowCheckedModeBanner: false,
