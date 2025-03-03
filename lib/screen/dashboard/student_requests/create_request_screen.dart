@@ -6,6 +6,7 @@ import 'package:lms/utils/app_consts.dart';
 import 'package:lms/data/model/teacher_request/nearby_teachers_response.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:lms/screen/dashboard/student_requests/student_requests_screen.dart';
+import 'package:lms/screen/dashboard/student_requests/student_requests_provider.dart';
 
 class CreateRequestScreen extends StatefulWidget {
   final Teacher teacher;
@@ -36,28 +37,35 @@ class _CreateRequestScreenState extends State<CreateRequestScreen> {
       try {
         EasyLoading.show(status: 'جاري إرسال الطلب...');
         
-        final success = await context.read<NearbyTeachersProvider>().createRequest(
+        final provider = Provider.of<NearbyTeachersProvider>(context, listen: false);
+        final success = await provider.createRequest(
           title: _titleController.text.trim(),
           reason: _reasonController.text.trim(),
           subject: _subjectController.text.trim(),
           teacherId: widget.teacher.id!,
         );
+
+        if (!mounted) return;
         
-        if (success && mounted) {
+        if (success) {
+          // تحديث قائمة الطلبات قبل الانتقال
+          await Provider.of<StudentRequestsProvider>(context, listen: false)
+              .getStudentRequests();
+          
+          Navigator.pop(context); // إغلاق شاشة إنشاء الطلب
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(
-              builder: (context) => ChangeNotifierProvider(
-                create: (context) => StudentRequestsProvider(),
-                child: const StudentRequestsScreen(),
-              ),
+              builder: (context) => const StudentRequestsScreen(),
             ),
           );
         }
       } catch (e) {
         debugPrint('Error in submit request: $e');
       } finally {
-        EasyLoading.dismiss();
+        if (mounted) {
+          EasyLoading.dismiss();
+        }
       }
     }
   }

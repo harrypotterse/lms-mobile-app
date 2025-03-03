@@ -4,6 +4,7 @@ import 'package:lms/data/dio_service/api_service.dart';
 import 'package:lms/data/model/teacher_request/nearby_teachers_response.dart';
 import 'package:lms/data/model/teacher_request/create_request_response.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'dart:async';  // Add this import at the top
 
 class NearbyTeachersProvider extends ChangeNotifier {
   bool _isLoading = false;
@@ -70,82 +71,44 @@ class NearbyTeachersProvider extends ChangeNotifier {
     required int teacherId,
   }) async {
     try {
-      // إرسال الطلب باستخدام formData بدلاً من queryParameters
-      final formData = {
+      final dio = ApiService.getDio()!;
+      
+      // استخدام FormData
+      final formData = FormData.fromMap({
         'title': title,
         'reason': reason,
         'subject': subject,
-        'teacher': teacherId.toString(),
-      };
+        'teacher': teacherId,
+      });
 
-      final response = await ApiService.getDio()!.post(
+      final response = await dio.post(
         'https://lms.null-safety.com/api/v1/student/requests',
-        data: formData, // استخدام data بدلاً من queryParameters
-      ).timeout(
-        const Duration(seconds: 30),
-        onTimeout: () {
-          Fluttertoast.showToast(
-            msg: 'انتهت مهلة الاتصال، يرجى المحاولة مرة أخرى',
-            backgroundColor: Colors.red,
-          );
-          throw TimeoutException('Request timeout');
-        },
+        data: formData,
       );
 
       debugPrint('Create Request Response: ${response.data}');
-
-      if (response.data != null) {
-        final createRequestResponse = CreateRequestResponse.fromJson(response.data);
-        
-        if (createRequestResponse.status == true) {
-          Fluttertoast.showToast(
-            msg: createRequestResponse.message ?? 'تم إرسال الطلب بنجاح',
-            backgroundColor: Colors.green,
-            toastLength: Toast.LENGTH_LONG,
-            gravity: ToastGravity.BOTTOM,
-          );
-          return true;
-        } else {
-          Fluttertoast.showToast(
-            msg: createRequestResponse.message ?? 'حدث خطأ أثناء إرسال الطلب',
-            backgroundColor: Colors.red,
-            toastLength: Toast.LENGTH_LONG,
-            gravity: ToastGravity.BOTTOM,
-          );
-          return false;
-        }
+      
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        Fluttertoast.showToast(
+          msg: 'تم إرسال الطلب بنجاح',
+          backgroundColor: Colors.green,
+          toastLength: Toast.LENGTH_LONG,
+        );
+        return true;
       } else {
         Fluttertoast.showToast(
-          msg: 'لم يتم استلام رد من الخادم',
+          msg: 'فشل إرسال الطلب',
           backgroundColor: Colors.red,
           toastLength: Toast.LENGTH_LONG,
-          gravity: ToastGravity.BOTTOM,
         );
         return false;
       }
-    } on DioException catch (e) {
-      debugPrint('Dio Error: ${e.message}');
-      debugPrint('Dio Error Response: ${e.response?.data}');
-      
-      String errorMessage = 'حدث خطأ أثناء إرسال الطلب';
-      if (e.response?.data != null && e.response?.data['message'] != null) {
-        errorMessage = e.response?.data['message'];
-      }
-      
-      Fluttertoast.showToast(
-        msg: errorMessage,
-        backgroundColor: Colors.red,
-        toastLength: Toast.LENGTH_LONG,
-        gravity: ToastGravity.BOTTOM,
-      );
-      return false;
     } catch (e) {
       debugPrint('Error creating request: $e');
       Fluttertoast.showToast(
-        msg: 'حدث خطأ غير متوقع',
+        msg: 'حدث خطأ أثناء إرسال الطلب',
         backgroundColor: Colors.red,
         toastLength: Toast.LENGTH_LONG,
-        gravity: ToastGravity.BOTTOM,
       );
       return false;
     }

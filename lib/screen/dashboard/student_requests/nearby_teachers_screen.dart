@@ -6,6 +6,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lms/utils/app_consts.dart';
 import 'package:lms/data/model/teacher_request/nearby_teachers_response.dart';
 import 'package:lms/screen/dashboard/student_requests/student_requests_screen.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:lms/screen/dashboard/student_requests/student_requests_provider.dart';
 
 class NearbyTeachersScreen extends StatefulWidget {
   const NearbyTeachersScreen({Key? key}) : super(key: key);
@@ -144,12 +147,7 @@ class TeacherCard extends StatelessWidget {
       child: InkWell(
         onTap: () {
           if (teacher.id != null) {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => CreateRequestScreen(teacher: teacher),
-              ),
-            );
+            _showCreateRequestModal(context, teacher);
           }
         },
         child: Padding(
@@ -226,6 +224,182 @@ class TeacherCard extends StatelessWidget {
               ),
             ],
           ),
+        ),
+      ),
+    );
+  }
+
+  void _showCreateRequestModal(BuildContext parentContext, Teacher teacher) {
+    final formKey = GlobalKey<FormState>();
+    final titleController = TextEditingController();
+    final subjectController = TextEditingController();
+    final reasonController = TextEditingController();
+
+    final nearbyTeachersProvider = Provider.of<NearbyTeachersProvider>(parentContext, listen: false);
+    final studentRequestsProvider = Provider.of<StudentRequestsProvider>(parentContext, listen: false);
+
+    showModalBottomSheet(
+      context: parentContext,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (context) => Container(
+        height: MediaQuery.of(context).size.height * 0.85,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.vertical(top: Radius.circular(20.r)),
+        ),
+        padding: EdgeInsets.only(
+          bottom: MediaQuery.of(context).viewInsets.bottom,
+        ),
+        child: Column(
+          children: [
+            // Header
+            Container(
+              padding: EdgeInsets.all(16.r),
+              decoration: BoxDecoration(
+                color: AppColors.primary,
+                borderRadius: BorderRadius.vertical(top: Radius.circular(20.r)),
+              ),
+              child: Row(
+                children: [
+                  Text(
+                    'إنشاء طلب جديد',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18.sp,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const Spacer(),
+                  IconButton(
+                    icon: const Icon(Icons.close, color: Colors.white),
+                    onPressed: () => Navigator.pop(context),
+                  ),
+                ],
+              ),
+            ),
+            
+            // Form
+            Expanded(
+              child: SingleChildScrollView(
+                padding: EdgeInsets.all(16.r),
+                child: Form(
+                  key: formKey,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      // معلومات المدرس
+                      ListTile(
+                        leading: CircleAvatar(
+                          backgroundColor: AppColors.primary,
+                          child: Text(
+                            teacher.name?.substring(0, 1).toUpperCase() ?? 'T',
+                            style: const TextStyle(color: Colors.white),
+                          ),
+                        ),
+                        title: Text(teacher.name ?? ''),
+                        subtitle: Text(teacher.email ?? ''),
+                      ),
+                      SizedBox(height: 24.h),
+                      
+                      // حقول الإدخال
+                      TextFormField(
+                        controller: titleController,
+                        decoration: InputDecoration(
+                          labelText: 'عنوان الطلب',
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(8.r),
+                          ),
+                        ),
+                        validator: (value) => value?.isEmpty == true 
+                            ? 'يرجى إدخال عنوان الطلب' 
+                            : null,
+                      ),
+                      SizedBox(height: 16.h),
+                      
+                      TextFormField(
+                        controller: subjectController,
+                        decoration: InputDecoration(
+                          labelText: 'الموضوع',
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(8.r),
+                          ),
+                        ),
+                        validator: (value) => value?.isEmpty == true 
+                            ? 'يرجى إدخال الموضوع' 
+                            : null,
+                      ),
+                      SizedBox(height: 16.h),
+                      
+                      TextFormField(
+                        controller: reasonController,
+                        decoration: InputDecoration(
+                          labelText: 'سبب الطلب',
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(8.r),
+                          ),
+                        ),
+                        maxLines: 3,
+                        validator: (value) => value?.isEmpty == true 
+                            ? 'يرجى إدخال سبب الطلب' 
+                            : null,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            
+            // زر الإرسال
+            Padding(
+              padding: EdgeInsets.all(16.r),
+              child: SizedBox(
+                width: double.infinity,
+                height: 50.h,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColors.primary,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8.r),
+                    ),
+                  ),
+                  onPressed: () async {
+                    if (formKey.currentState?.validate() == true) {
+                      try {
+                        EasyLoading.show(status: 'جاري إرسال الطلب...');
+                        
+                        final success = await nearbyTeachersProvider.createRequest(
+                          title: titleController.text.trim(),
+                          reason: reasonController.text.trim(),
+                          subject: subjectController.text.trim(),
+                          teacherId: teacher.id!,
+                        );
+                        
+                        if (success) {
+                          await studentRequestsProvider.getStudentRequests();
+                          Navigator.pop(context);
+                          Fluttertoast.showToast(
+                            msg: 'تم إرسال الطلب بنجاح',
+                            backgroundColor: Colors.green,
+                            toastLength: Toast.LENGTH_LONG,
+                          );
+                        }
+                      } finally {
+                        EasyLoading.dismiss();
+                      }
+                    }
+                  },
+                  child: Text(
+                    'إرسال الطلب',
+                    style: TextStyle(
+                      fontSize: 16.sp,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );
