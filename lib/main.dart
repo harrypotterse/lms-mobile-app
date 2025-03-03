@@ -13,6 +13,7 @@ import 'package:provider/provider.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:lms/screen/dashboard/teacher_requests/teacher_requests_provider.dart';
 import 'package:lms/screen/dashboard/student_requests/student_requests_provider.dart';
+import 'package:lms/providers/role_check_provider.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
@@ -25,6 +26,7 @@ void main() {
         ChangeNotifierProvider(create: (_) => ConnectivityProvider()),
         ChangeNotifierProvider(create: (_) => TeacherRequestsProvider()),
         ChangeNotifierProvider(create: (_) => StudentRequestsProvider()),
+        ChangeNotifierProvider(create: (_) => RoleCheckProvider()),
       ],
       child: const MyApp(),
     ),
@@ -63,6 +65,7 @@ class MyApp extends StatelessWidget {
                 ChangeNotifierProvider(create: (_) => ConnectivityProvider()),
                 ChangeNotifierProvider(create: (_) => TeacherRequestsProvider()),
                 ChangeNotifierProvider(create: (_) => StudentRequestsProvider()),
+                ChangeNotifierProvider(create: (_) => RoleCheckProvider()),
               ],
               child: MaterialApp(
                 debugShowCheckedModeBanner: false,
