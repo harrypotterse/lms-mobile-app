@@ -34,7 +34,7 @@ class AboutCart extends StatelessWidget {
                     color: Colors.black,
                   )
                 : CustomText(
-                    text: 'About Not Found',
+                    text: 'لا توجد معلومات',
                     fontSize: 14.sp,
                     fontWeight: FontWeight.w600,
                     color: AppColors.body,
@@ -43,7 +43,7 @@ class AboutCart extends StatelessWidget {
               height: 20.h,
             ),
             CustomText(
-              text: 'Experiences',
+              text: 'الخبرات',
               fontSize: 14.sp,
               fontWeight: FontWeight.w600,
               color: AppColors.title,
@@ -63,7 +63,7 @@ class AboutCart extends StatelessWidget {
                     color: Colors.black,
                   )
                 : CustomText(
-                    text: 'No Experiences Found',
+                    text: 'لا توجد خبرات',
                     fontSize: 14.sp,
                     fontWeight: FontWeight.w600,
                     color: AppColors.body,
@@ -72,7 +72,7 @@ class AboutCart extends StatelessWidget {
               height: 20.h,
             ),
             CustomText(
-              text: 'Education',
+              text: 'التعليم',
               fontSize: 14.sp,
               fontWeight: FontWeight.w600,
               color: AppColors.title,
@@ -92,7 +92,7 @@ class AboutCart extends StatelessWidget {
                     color: AppColors.body,
                   )
                 : CustomText(
-                    text: 'No Data Found',
+                    text: 'لا توجد بيانات',
                     fontSize: 14.sp,
                     fontWeight: FontWeight.w600,
                     color: AppColors.body,

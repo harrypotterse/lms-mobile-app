@@ -103,7 +103,7 @@ class InstructorInfoContent extends StatelessWidget {
                       color: AppColors.title,
                     ),
                     CustomText(
-                      text: 'Courses',
+                      text: 'الدورات',
                       fontSize: 12.sp,
                       fontWeight: FontWeight.w600,
                       color: AppColors.primary,
@@ -139,7 +139,7 @@ class InstructorInfoContent extends StatelessWidget {
                       color: AppColors.title,
                     ),
                     CustomText(
-                      text: 'Student',
+                      text: 'الطلاب',
                       fontSize: 12.sp,
                       fontWeight: FontWeight.w600,
                       color: AppColors.primary,
@@ -176,7 +176,7 @@ class InstructorInfoContent extends StatelessWidget {
                       color: AppColors.title,
                     ),
                     CustomText(
-                      text: 'Global Sale',
+                      text: 'المبيعات العالمية',
                       fontSize: 12.sp,
                       fontWeight: FontWeight.w600,
                       color: AppColors.primary,

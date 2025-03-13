@@ -44,7 +44,7 @@ class ReviewsCart extends StatelessWidget {
                       ),
                       CustomText(
                         text:
-                            'Based on ${mentorsDetailsResponse?.data?.instructor?.reviews?.reviewCount ?? ''} Reviews',
+                            'بناءً على ${mentorsDetailsResponse?.data?.instructor?.reviews?.reviewCount ?? ''} تقييم',
                         fontSize: 12.sp,
                         fontWeight: FontWeight.w600,
                         color: AppColors.body,
@@ -71,7 +71,7 @@ class ReviewsCart extends StatelessWidget {
                       Row(
                         children: [
                           CustomText(
-                            text: '5 star',
+                            text: '5 نجوم',
                             fontSize: 10.sp,
                             fontWeight: FontWeight.w500,
                             color: AppColors.body,
@@ -88,7 +88,7 @@ class ReviewsCart extends StatelessWidget {
                       Row(
                         children: [
                           CustomText(
-                            text: '4 star',
+                            text: '4 نجوم',
                             fontSize: 10.sp,
                             fontWeight: FontWeight.w500,
                             color: AppColors.body,
@@ -105,7 +105,7 @@ class ReviewsCart extends StatelessWidget {
                       Row(
                         children: [
                           CustomText(
-                            text: '3 star',
+                            text: '3 نجوم',
                             fontSize: 10.sp,
                             fontWeight: FontWeight.w500,
                             color: AppColors.body,
@@ -122,7 +122,7 @@ class ReviewsCart extends StatelessWidget {
                       Row(
                         children: [
                           CustomText(
-                            text: '2 star',
+                            text: '2 نجوم',
                             fontSize: 10.sp,
                             fontWeight: FontWeight.w500,
                             color: AppColors.body,
@@ -139,7 +139,7 @@ class ReviewsCart extends StatelessWidget {
                       Row(
                         children: [
                           CustomText(
-                            text: '1 star',
+                            text: '1 نجمة',
                             fontSize: 10.sp,
                             fontWeight: FontWeight.w500,
                             color: AppColors.body,

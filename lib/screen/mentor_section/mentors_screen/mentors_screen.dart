@@ -46,7 +46,7 @@ class _InstructorScreenState extends State<InstructorScreen> {
                           decoration: InputDecoration(
                               contentPadding: EdgeInsets.symmetric(
                                   vertical: 13.h, horizontal: 16.w),
-                              hintText: 'Search',
+                              hintText: 'بحث',
                               hintStyle: TextStyle(
                                   fontSize: 14,
                                   color: AppColors.title.withOpacity(0.3),

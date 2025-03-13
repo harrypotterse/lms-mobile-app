@@ -20,7 +20,7 @@ class ConsultantsCart extends StatelessWidget {
                 child: Align(
                     alignment: Alignment.center,
                     child: Text(
-                      "Consultants not found",
+                      "لم يتم العثور على مستشارين",
                       style: TextStyle(
                           fontSize: 26,
                           fontWeight: FontWeight.bold,

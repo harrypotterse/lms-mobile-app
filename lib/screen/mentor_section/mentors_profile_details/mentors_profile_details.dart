@@ -23,7 +23,7 @@ class MentorsProfile extends StatefulWidget {
 
 class _MentorsProfileState extends State<MentorsProfile>
     with SingleTickerProviderStateMixin {
-  List<String> examType = ["About", "Courses", "Badges", "Reviews"];
+  List<String> examType = ["نبذة", "الدورات", "الشارات", "التقييمات"];
   var selectedIndex = 0;
   ScrollController? _scrollViewController;
   @override
@@ -36,7 +36,7 @@ class _MentorsProfileState extends State<MentorsProfile>
               backgroundColor: AppColors.backgroundColor,
               appBar: PreferredSize(
                 preferredSize: Size.fromHeight(70.h),
-                child: const CustomAppBar(appBarName: 'Profile'),
+                child: const CustomAppBar(appBarName: 'الملف الشخصي'),
               ),
               body: Padding(
                 padding: const EdgeInsets.all(20.0),
@@ -117,84 +117,7 @@ class _MentorsProfileState extends State<MentorsProfile>
                                     : const SizedBox(),
                   ],
                 ),
-              )
-
-              // SingleChildScrollView(
-              //   child: Padding(
-              //     padding:
-              //         EdgeInsets.symmetric(horizontal: 24.0.w, vertical: 10.h),
-              //     child: Column(
-              //       children: [
-              //         InstructorInfoContent(
-              //             provider: provider, users: widget.users),
-              //         Center(
-              //           child: Column(
-              //             children: [
-              //               Container(
-              //                 decoration: BoxDecoration(
-              //                   borderRadius: BorderRadius.circular(4),
-              //                   color: Colors.white,
-              //                 ),
-              //                 child: TabBar(
-              //                     // onTap: (int index) {
-              //                     //   provider.selectTab(index);
-              //                     // },
-              //                     unselectedLabelColor: AppColors.body,
-              //                     indicatorColor: AppColors.primary,
-              //                     labelColor: AppColors.primary,
-              //                     labelStyle: TextStyle(
-              //                         fontSize: 14.sp,
-              //                         fontWeight: FontWeight.w700),
-              //                     tabs: const [
-              //                       Tab(
-              //                         text: 'About',
-              //                       ),
-              //                       Tab(
-              //                         text: 'Courses',
-              //                       ),
-              //                       // Tab(
-              //                       //   text: 'Badges',
-              //                       // ),
-              //                       Tab(
-              //                         text: 'Reviews',
-              //                       ),
-              //                     ],
-              //                     controller: _tabController,
-              //                     indicatorSize: TabBarIndicatorSize.tab),
-              //               ),
-              //               SizedBox(
-              //                 height: 298.h,
-              //                 child: TabBarView(
-              //                     physics: const NeverScrollableScrollPhysics(),
-              //                     controller: _tabController,
-              //                     children: [
-              //                       AboutCart(
-              //                           mentorsDetailsResponse:
-              //                               provider.mentorsDetailsResponse),
-              //                       Padding(
-              //                         padding: const EdgeInsets.all(16.0),
-              //                         child: MentorsCourses(
-              //                           mentorsDetailsResponse:
-              //                               provider.mentorsDetailsResponse,
-              //                         ),
-              //                       ),
-              //                       // BadgesCart(
-              //                       //     mentorsDetailsResponse:
-              //                       //         provider.mentorsDetailsResponse),
-              //                       ReviewsCart(
-              //                         mentorsDetailsResponse:
-              //                             provider.mentorsDetailsResponse,
-              //                       )
-              //                     ]),
-              //               ),
-              //             ],
-              //           ),
-              //         )
-              //       ],
-              //     ),
-              //   ),
-              // ),
-              );
+              ));
         },
       ),
     );

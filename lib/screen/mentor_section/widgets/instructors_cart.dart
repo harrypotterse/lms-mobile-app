@@ -20,7 +20,7 @@ class InstructorsCart extends StatelessWidget {
                 child: Align(
                     alignment: Alignment.center,
                     child: Text(
-                      "Instructors not found",
+                      "لم يتم العثور على مدربين",
                       style: TextStyle(
                           fontSize: 26,
                           fontWeight: FontWeight.bold,

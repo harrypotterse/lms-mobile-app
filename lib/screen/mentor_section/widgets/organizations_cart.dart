@@ -20,7 +20,7 @@ class OrganizationsCart extends StatelessWidget {
                 child: Align(
                     alignment: Alignment.center,
                     child: Text(
-                      "Organizations not found",
+                      "لم يتم العثور على مؤسسات",
                       style: TextStyle(
                           fontSize: 26,
                           fontWeight: FontWeight.bold,
