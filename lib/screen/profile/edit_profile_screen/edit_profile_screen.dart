@@ -34,7 +34,7 @@ class _EditProfileScreenState extends State<EditProfileScreen>
           return Scaffold(
             appBar: PreferredSize(
               preferredSize: Size.fromHeight(70.h),
-              child: const CustomAppBar(appBarName: 'Edit Profile'),
+              child: const CustomAppBar(appBarName: 'تعديل الملف الشخصي'),
             ),
             body: SingleChildScrollView(
               child: Padding(
@@ -121,7 +121,7 @@ class _EditProfileScreenState extends State<EditProfileScreen>
                           ),
                           CustomText(
                             text:
-                                'Member since ${provider.userJoinDate ?? ''}',
+                                'عضو منذ ${provider.userJoinDate ?? ''}',
                             fontSize: 12.sp,
                             fontWeight: FontWeight.w600,
                             color: AppColors.body,
@@ -147,10 +147,10 @@ class _EditProfileScreenState extends State<EditProfileScreen>
                             fontSize: 14.sp, fontWeight: FontWeight.w700),
                         tabs: const [
                           Tab(
-                            text: 'Basic Info',
+                            text: 'المعلومات الأساسية',
                           ),
                           Tab(
-                            text: 'Password',
+                            text: 'كلمة المرور',
                           ),
                         ],
                         controller: _tabController,

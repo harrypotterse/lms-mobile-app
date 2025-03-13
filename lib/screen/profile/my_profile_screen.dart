@@ -24,7 +24,7 @@ class MyProfileScreen extends StatefulWidget {
 }
 
 class _MyProfileScreenState extends State<MyProfileScreen> {
-  List<String> examType = ["My Courses", "Assignments", "Certificate"];
+  List<String> examType = ["دوراتي", "الواجبات", "الشهادات"];
   var selectedIndex = 0;
   ScrollController? _scrollViewController;
   @override
@@ -35,7 +35,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
         appBar: widget.isBottomNav == false
             ? PreferredSize(
                 preferredSize: Size.fromHeight(70.h),
-                child: const CustomAppBar(appBarName: 'Profile'),
+                child: const CustomAppBar(appBarName: 'الملف الشخصي'),
               )
             : const PreferredSize(
                 // ignore: sort_child_properties_last
@@ -92,7 +92,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                                 ),
                                 CustomText(
                                   text:
-                                      'Member since ${provider.userJoinDate ?? ''}',
+                                      'عضو منذ ${provider.userJoinDate ?? ''}',
                                   fontSize: 12.sp,
                                   fontWeight: FontWeight.w400,
                                   color: Colors.black,
@@ -262,7 +262,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                                             ));
                                       },
                                       child: CustomText(
-                                        text: "Play Now",
+                                        text: "تشغيل الآن",
                                         color: AppColors.white,
                                         fontSize: 12.sp,
                                         fontWeight: FontWeight.w500,
@@ -299,7 +299,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                               return AllAssignmentListCart(
                                 deadline: data?.deadline.toString(),
                                 details: data?.details ?? '',
-                                status: 'Not Submitted',
+                                status: 'لم يتم التسليم',
                                 title: "${data?.title}".split(" ")[0],
                                 onTap: () {
                                   return NavUtil.navigateScreen(

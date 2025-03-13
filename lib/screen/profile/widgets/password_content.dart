@@ -27,12 +27,12 @@ class _PasswordContentState extends State<PasswordContent> {
             height: 24.h,
           ),
           FromField(
-            title: "Current Password",
+            title: "كلمة المرور الحالية",
             hintText: "***********",
             controller: widget.provider?.oldPasswordController,
             validator: (textValue) {
               if (textValue == null || textValue.isEmpty) {
-                return 'Current Password is required!';
+                return 'كلمة المرور الحالية مطلوبة!';
               }
               return null;
             },
@@ -49,7 +49,7 @@ class _PasswordContentState extends State<PasswordContent> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'New Password',
+                'كلمة المرور الجديدة',
                 style: TextStyle(
                     letterSpacing: 1,
                     color: Colors.black,
@@ -67,7 +67,7 @@ class _PasswordContentState extends State<PasswordContent> {
                     fillColor: AppColors.white,
                     contentPadding:
                         EdgeInsets.symmetric(vertical: 13.h, horizontal: 16.w),
-                    hintText: 'Enter new password',
+                    hintText: 'أدخل كلمة المرور الجديدة',
                     enabledBorder: const OutlineInputBorder(
                       borderSide: BorderSide(color: AppColors.border),
                     ),
@@ -88,7 +88,7 @@ class _PasswordContentState extends State<PasswordContent> {
                     border: const OutlineInputBorder()),
                     validator: (textValue) {
                   if (textValue == null || textValue.isEmpty) {
-                    return 'New Password is required!';
+                    return 'كلمة المرور الجديدة مطلوبة!';
                   }
                   return null;
                 },
@@ -102,7 +102,7 @@ class _PasswordContentState extends State<PasswordContent> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Re-enter New Password',
+                'إعادة إدخال كلمة المرور الجديدة',
                 style: TextStyle(
                     letterSpacing: 1,
                     color: Colors.black,
@@ -120,7 +120,7 @@ class _PasswordContentState extends State<PasswordContent> {
                     fillColor: AppColors.white,
                     contentPadding:
                         EdgeInsets.symmetric(vertical: 13.h, horizontal: 16.w),
-                    hintText: 'Re-enter New Password',
+                    hintText: 'أعد إدخال كلمة المرور الجديدة',
                     enabledBorder: const OutlineInputBorder(
                       borderSide: BorderSide(color: AppColors.border),
                     ),
@@ -141,7 +141,7 @@ class _PasswordContentState extends State<PasswordContent> {
                     border: const OutlineInputBorder()),
                        validator: (textValue) {
                   if (textValue == null || textValue.isEmpty) {
-                    return 'Re-enter Password is required!';
+                    return 'إعادة إدخال كلمة المرور مطلوبة!';
                   }
                   return null;
                 },
@@ -152,7 +152,7 @@ class _PasswordContentState extends State<PasswordContent> {
             height: 24.h,
           ),
           ElevatedButtonWidget(
-            text: "Update",
+            text: "تحديث",
             onPressed: () {
             if(_passwordFormKey.currentState!.validate()){
                 widget.provider?.updatePassword(context);

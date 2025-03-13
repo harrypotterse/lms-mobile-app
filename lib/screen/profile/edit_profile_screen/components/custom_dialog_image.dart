@@ -23,7 +23,7 @@ class CustomDialogImagePicker extends StatelessWidget {
             const Padding(
               padding: EdgeInsets.only(left: 20.0),
               child: Text(
-                "Select Image",
+                "اختر صورة",
                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
               ),
             ),
@@ -54,7 +54,7 @@ class CustomDialogImagePicker extends StatelessWidget {
                         height: 8,
                       ),
                       Text(
-                        "Camera",
+                        "الكاميرا",
                         style: TextStyle(
                             color: Colors.black,
                             fontSize: 12,
@@ -89,7 +89,7 @@ class CustomDialogImagePicker extends StatelessWidget {
                           height: 3,
                         ),
                         Text(
-                          "Gallery",
+                          "المعرض",
                           style: TextStyle(
                               color: Colors.black,
                               fontSize: 12,
@@ -113,7 +113,7 @@ class CustomDialogImagePicker extends StatelessWidget {
                 child: Align(
                     alignment: Alignment.bottomRight,
                     child: Text(
-                      "Cancel",
+                      "إلغاء",
                       style: TextStyle(fontWeight: FontWeight.bold),
                     )),
               ),

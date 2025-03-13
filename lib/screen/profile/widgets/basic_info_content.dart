@@ -16,23 +16,23 @@ class BasicInfoContent extends StatelessWidget {
           height: 24.h,
         ),
         FromField(
-          title: "Full Name",
-          hintText: "Write your full name",
+          title: "الاسم الكامل",
+          hintText: "اكتب اسمك الكامل",
           controller: provider?.editNameController,
         ),
         SizedBox(
           height: 24.h,
         ),
         FromField(
-          title: "Email Address",
-          hintText: "Write your email address",
+          title: "البريد الإلكتروني",
+          hintText: "اكتب عنوان بريدك الإلكتروني",
           controller: provider?.emailEditController,
         ),
         SizedBox(
           height: 24.h,
         ),
         FromField(
-          title: "Phone Number",
+          title: "رقم الهاتف",
           hintText: "+01 | 023-6894-523",
           controller: provider?.phoneEditController,
         ),
@@ -71,7 +71,7 @@ class BasicInfoContent extends StatelessWidget {
           height: 24.h,
         ),
         ElevatedButtonWidget(
-          text: "Update",
+          text: "تحديث",
           onPressed: () {
             provider?.editProfileInfo(context);
           },
