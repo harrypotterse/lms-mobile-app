@@ -32,7 +32,7 @@ class VerificationScreen extends StatelessWidget {
                     height: 40.h,
                   ),
                   CustomText(
-                    text: 'Verify account',
+                    text: 'تحقق من الحساب',
                     color: AppColors.title,
                     fontSize: 20.sp,
                     fontWeight: FontWeight.w700,
@@ -42,7 +42,7 @@ class VerificationScreen extends StatelessWidget {
                     height: 65.h,
                   ),
                   Text(
-                    "Authentication Code",
+                    "رمز التحقق",
                     style: TextStyle(
                         fontSize: 20.sp,
                         color: Colors.black,
@@ -52,7 +52,7 @@ class VerificationScreen extends StatelessWidget {
                     height: 6.h,
                   ),
                   Text(
-                    'Enter 4-digit code we just texted to your\nEmail Address: $email',
+                    'أدخل رمزًا مكونًا من 4 أرقام قمنا بإرساله لبريدك الإلكتروني\n$email',
                     style: TextStyle(
                         height: 1.6,
                         color: AppColors.body,
@@ -93,7 +93,7 @@ class VerificationScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        'Resend code after : ',
+                        'إعادة إرسال الرمز بعد : ',
                         style: TextStyle(
                             color: AppColors.body,
                             fontSize: 14.sp,
@@ -112,7 +112,7 @@ class VerificationScreen extends StatelessWidget {
                     height: 40.h,
                   ),
                   ElevatedbuttonWidget(
-                    text: 'VERIFY NOW',
+                    text: 'تحقق الآن',
                     onPressed: () {
                       provider.verificationApi(email: email, context: context);
                     },
@@ -122,7 +122,7 @@ class VerificationScreen extends StatelessWidget {
                   ),
                   Center(
                     child: Text(
-                      'RESEND CODE',
+                      'إعادة إرسال الرمز',
                       style: TextStyle(
                           decoration: TextDecoration.underline,
                           letterSpacing: 1,

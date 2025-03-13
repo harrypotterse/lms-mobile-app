@@ -26,7 +26,7 @@ class AcademyContent extends StatelessWidget {
                   ),
                   Center(
                     child: CustomText(
-                      text: "Why Choose Onest Academy",
+                      text: "لماذا تختار أكاديمية أونست",
                       color: Color(0xff212736),
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
@@ -38,7 +38,7 @@ class AcademyContent extends StatelessWidget {
                   Center(
                     child: CustomText(
                       text:
-                          "Look into yourself, get something in return as your achievment.",
+                          "انظر إلى نفسك، احصل على شيء في المقابل كإنجازك.",
                       color: AppColors.body,
                       fontSize: 14,
                       fontWeight: FontWeight.w400,
@@ -52,17 +52,17 @@ class AcademyContent extends StatelessWidget {
                       Expanded(
                           child: AcademyCart(
                         image: 'assets/web/home_page/academy_section_one.png',
-                        title: "Online Course From \nExperts",
+                        title: "دورة اونلاين من\nالخبراء",
                       )),
                       Expanded(
                           child: AcademyCart(
                         image: 'assets/web/home_page/academy_section_two.png',
-                        title: "Online Course From \nExperts",
+                        title: "دورة اونلاين من\nالخبراء",
                       )),
                       Expanded(
                           child: AcademyCart(
                         image: 'assets/web/home_page/academy_section_three.png',
-                        title: "Online Course From \nExperts",
+                        title: "دورة اونلاين من\nالخبراء",
                       )),
                     ],
                   ),

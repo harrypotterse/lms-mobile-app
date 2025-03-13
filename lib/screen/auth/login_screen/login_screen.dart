@@ -40,14 +40,14 @@ class _LogInScreenState extends State<LogInScreen> {
                           height: 80.h,
                         ),
                         Text(
-                          "Sign In",
+                          "تسجيل الدخول",
                           style: TextStyle(
                               fontSize: 20.sp,
                               color: Colors.black,
                               fontWeight: FontWeight.w700),
                         ),
                         Text(
-                          'Welcome back, Let’s sign in to continue',
+                          "مرحباً بك مرة أخرى، دعنا",
                           style: TextStyle(
                               height: 1.7,
                               color: AppColors.body,
@@ -83,7 +83,7 @@ class _LogInScreenState extends State<LogInScreen> {
                                   ),
                                   contentPadding: EdgeInsets.symmetric(
                                       vertical: 13.h, horizontal: 16.w),
-                                  hintText: 'Phone or Email',
+                                  hintText: 'البريد الإلكتروني أو رقم الهاتف',
                                   enabledBorder: const OutlineInputBorder(
                                     borderSide:
                                         BorderSide(color: AppColors.border),
@@ -104,7 +104,7 @@ class _LogInScreenState extends State<LogInScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'Password',
+                              'كلمة المرور',
                               style: TextStyle(
                                   letterSpacing: 1,
                                   color: Colors.black,
@@ -126,7 +126,7 @@ class _LogInScreenState extends State<LogInScreen> {
                                   fillColor: AppColors.white,
                                   contentPadding: EdgeInsets.symmetric(
                                       vertical: 13.h, horizontal: 16.w),
-                                  hintText: 'Password',
+                                  hintText: 'كلمة المرور',
                                   enabledBorder: const OutlineInputBorder(
                                     borderSide:
                                         BorderSide(color: AppColors.border),
@@ -166,7 +166,7 @@ class _LogInScreenState extends State<LogInScreen> {
                         //       width: 6.w,
                         //     ),
                         //     Text(
-                        //       'Remember me',
+                        //       'تذكرني',
                         //       style: TextStyle(
                         //         fontSize: 14.sp,
                         //         fontWeight: FontWeight.w600,
@@ -183,7 +183,7 @@ class _LogInScreenState extends State<LogInScreen> {
                         //             ));
                         //       },
                         //       child: Text(
-                        //         'Forgot Password?',
+                        //         'نسيت كلمة المرور؟',
                         //         style: TextStyle(
                         //             fontSize: 14.sp,
                         //             fontWeight: FontWeight.w600,
@@ -196,7 +196,7 @@ class _LogInScreenState extends State<LogInScreen> {
                           height: 20.h,
                         ),
                         ElevatedbuttonWidget(
-                          text: 'LOGIN',
+                          text: 'تسجيل الدخول',
                           onPressed: () {
                             provider.loginApi(context);
                           },
@@ -207,7 +207,7 @@ class _LogInScreenState extends State<LogInScreen> {
                         Row(
                           children: [
                             Text(
-                              'Don’t have an account?',
+                              'ليس لديك حساب؟',
                               style: TextStyle(
                                   fontSize: 14.sp,
                                   fontWeight: FontWeight.w600,
@@ -226,7 +226,7 @@ class _LogInScreenState extends State<LogInScreen> {
                                     ));
                               },
                               child: Text(
-                                'Register Now',
+                                'سجل الآن',
                                 style: TextStyle(
                                     fontSize: 14.sp,
                                     fontWeight: FontWeight.w600,

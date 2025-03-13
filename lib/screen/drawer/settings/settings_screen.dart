@@ -41,7 +41,7 @@ class SettingsScreen extends StatelessWidget {
                     width: 12.w,
                   ),
                   CustomText(
-                    text: 'About us',
+                    text: 'معلومات عنا ',
                     fontSize: 16.sp,
                     fontWeight: FontWeight.w400,
                     color: AppColors.body,
@@ -70,7 +70,7 @@ class SettingsScreen extends StatelessWidget {
                     width: 12.w,
                   ),
                   CustomText(
-                    text: 'Edit Profile',
+                    text: 'تعديل الملف الشخصي',
                     fontSize: 16.sp,
                     fontWeight: FontWeight.w400,
                     color: AppColors.body,
@@ -95,7 +95,7 @@ class SettingsScreen extends StatelessWidget {
                     width: 12.w,
                   ),
                   CustomText(
-                    text: 'Logout',
+                    text: 'تسجيل الخروج',
                     fontSize: 16.sp,
                     fontWeight: FontWeight.w400,
                     color: AppColors.body,

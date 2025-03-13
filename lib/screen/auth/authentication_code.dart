@@ -26,7 +26,7 @@ class AuthenticationCodeScreen extends StatelessWidget {
               height: 40.h,
             ),
             CustomText(
-              text: 'Forget Password',
+              text: "نسيت كلمة السر",
               color: AppColors.title,
               fontSize: 20.sp,
               fontWeight: FontWeight.w700,
@@ -36,7 +36,7 @@ class AuthenticationCodeScreen extends StatelessWidget {
               height: 65.h,
             ),
             Text(
-              "Authentication Code",
+              "رمز التحقق",
               style: TextStyle(
                   fontSize: 20.sp,
                   color: Colors.black,
@@ -46,7 +46,7 @@ class AuthenticationCodeScreen extends StatelessWidget {
               height: 6.h,
             ),
             Text(
-              'Enter 4-digit code we just texted to your\nPhone number: +880 *** **** 36',
+              'أدخل الرمز المكون من 4 أرقام الذي تم إرساله إلى\nرقم هاتفك: +880 *** **** 36',
               style: TextStyle(
                   height: 1.6,
                   color: AppColors.body,
@@ -89,7 +89,7 @@ class AuthenticationCodeScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  'Resend code after : ',
+                  'إعادة إرسال الرمز بعد : ',
                   style: TextStyle(
                       color: AppColors.body,
                       fontSize: 14.sp,
@@ -108,7 +108,7 @@ class AuthenticationCodeScreen extends StatelessWidget {
               height: 40.h,
             ),
             ElevatedbuttonWidget(
-              text: 'VERIFY NOW',
+              text: 'تحقق الآن',
               onPressed: () {
                 // Navigator.push(
                 //     context,
@@ -122,7 +122,7 @@ class AuthenticationCodeScreen extends StatelessWidget {
             ),
             Center(
               child: Text(
-                'RESEND CODE',
+                'إعادة إرسال الرمز',
                 style: TextStyle(
                     decoration: TextDecoration.underline,
                     letterSpacing: 1,

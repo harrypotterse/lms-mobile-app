@@ -22,7 +22,7 @@ class ForgetPassword extends StatelessWidget {
                 height: 40.h,
               ),
               CustomText(
-                text: 'Forget Password',
+                text: 'نسيت كلمة المرور',
                 color: AppColors.title,
                 fontSize: 20.sp,
                 fontWeight: FontWeight.w700,
@@ -43,7 +43,7 @@ class ForgetPassword extends StatelessWidget {
               ),
               const CustomText(
                 text:
-                    'Select which contact details should we use\nto reset your password.',
+                    'اختر طريقة الاتصال التي يجب استخدامها\nلإعادة تعيين كلمة المرور.',
               ),
               SizedBox(
                 height: 40.h,
@@ -70,7 +70,7 @@ class ForgetPassword extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           CustomText(
-                            text: "via SMS",
+                            text: "عبر الرسائل القصيرة",
                             color: AppColors.body,
                             fontSize: 14.sp,
                             fontWeight: FontWeight.w400,
@@ -115,7 +115,7 @@ class ForgetPassword extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           CustomText(
-                            text: "via Email",
+                            text: "عبر البريد الإلكتروني",
                             color: AppColors.body,
                             fontSize: 14.sp,
                             fontWeight: FontWeight.w400,
@@ -146,7 +146,7 @@ class ForgetPassword extends StatelessWidget {
                         builder: (context) => const AuthenticationCodeScreen(),
                       ));
                 },
-                text: "Continue",
+                text: "متابعة",
               )
             ],
           ),

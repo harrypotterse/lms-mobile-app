@@ -51,19 +51,19 @@ class _BottomNavBarState extends State<BottomNavBar> {
   void appBarName(int radians) {
     switch (radians) {
       case 0:
-        barName = "Instructor";
+        barName = "المدرب";
         break;
       case 1:
-        barName = "Dashboard";
+        barName = "لوحة القيادة";
         break;
       case 2:
-        barName = "Home";
+        barName = "الصفحة الرئيسية";
         break;
       case 3:
-        barName = "All Courses";
+        barName = "جميع الدورات";
         break;
       case 4:
-        barName = "Profile";
+        barName = "الملف الشخصي";
         break;
     }
   }
@@ -94,7 +94,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
           final differences = DateTime.now().difference(timeBackPressed);
           timeBackPressed = DateTime.now();
           if (differences >= const Duration(seconds: 2)) {
-            String msg = "Press the back button to exit";
+            String msg = "اضغط على زر العودة للخروج";
             Fluttertoast.showToast(
               msg: msg,
             );
@@ -180,7 +180,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
                           height: 24.h,
                           width: 24.w,
                         ),
-                  label: 'Instructor',
+                  label: 'المدرب',
                 ),
                 BottomNavigationBarItem(
                   icon: selectedIndex == 1
@@ -199,7 +199,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
                   //   height: 24.h,
                   //   width: 24.w,
                   // ),
-                  label: 'Dashboard',
+                  label: 'لوحة القيادة',
                 ),
                 const BottomNavigationBarItem(
                     backgroundColor: Colors.white,
@@ -220,7 +220,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
                           height: 24.h,
                           width: 24.w,
                         ),
-                  label: 'Courses',
+                  label: 'الدورات',
                 ),
                 BottomNavigationBarItem(
                   icon: selectedIndex == 4
@@ -239,7 +239,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
                   //   height: 24.h,
                   //   width: 24.w,
                   // ),
-                  label: 'Profile',
+                  label: 'الملف الشخصي',
                 ),
               ],
               currentIndex: selectedIndex,

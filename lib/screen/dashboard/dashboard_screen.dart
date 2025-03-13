@@ -60,7 +60,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                       .toString() ??
                                   '',
                               type: "Courses",
-                              title: "Courses Count",
+                              title: "عدد الدورات",
                             ),
                           ),
                           SizedBox(
@@ -74,7 +74,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                       .toString() ??
                                   '',
                               type: "Purchase",
-                              title: "Purchase Count",
+                              title: "عدد المشتريات",
                             ),
                           ),
                         ],
@@ -90,7 +90,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         height: 34.h,
                       ),
                       CustomText(
-                        text: "Assignment",
+                        text: 'الواجبات',
                         fontSize: 18.sp,
                         fontWeight: FontWeight.w600,
                         color: AppColors.title,

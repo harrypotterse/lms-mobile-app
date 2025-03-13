@@ -30,19 +30,19 @@ class _SignUpScreenState extends State<SignUpScreen> {
   Future<Position> _getCurrentLocation() async {
     bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {
-      return Future.error('Location Service is Disabled');
+      return Future.error('خدمة تحديد الموقع معطلة');
     }
 
     LocationPermission permission = await Geolocator.requestPermission();
     if (permission == LocationPermission.denied) {
       if (permission == LocationPermission.denied) {
-        return Future.error("Location Permission are denied");
+        return Future.error("تم رفض إذن تحديد الموقع");
       }
     }
 
     if (permission == LocationPermission.deniedForever) {
       return Future.error(
-          "Location permission are permanently denied, we cannot request permission location");
+          "تم رفض إذن تحديد الموقع بشكل دائم، لا يمكننا طلب الإذن");
     }
 
     return await Geolocator.getCurrentPosition();
@@ -60,7 +60,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
       long = position.longitude.toString();
 
       setState(() {
-        locationMsg = 'Lat: $lat Long: $long';
+        locationMsg = 'خط العرض: $lat خط الطول: $long';
       });
     });
   }
@@ -140,14 +140,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           height: 30.h,
                         ),
                         Text(
-                          "Create Account",
+                          "إنشاء حساب",
                           style: TextStyle(
                               fontSize: 20.sp,
                               color: Colors.black,
                               fontWeight: FontWeight.w700),
                         ),
                         Text(
-                          'Create an account to continue!',
+                          'أنشئ حساباً للمتابعة!',
                           style: TextStyle(
                               color: AppColors.body,
                               fontSize: 14.sp,
@@ -159,8 +159,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         //user name///
                         FromField(
                           controller: provider.nameController,
-                          title: "User Name",
-                          hintText: 'Write your full Name',
+                          title: "اسم المستخدم",
+                          hintText: 'اكتب اسمك الكامل',
                         ),
                         SizedBox(
                           height: 16.h,
@@ -168,8 +168,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         ////Email/phone from field////
                         FromField(
                           controller: provider.emailController,
-                          title: "Email",
-                          hintText: 'Write your email',
+                          title: "البريد الإلكتروني",
+                          hintText: 'اكتب بريدك الإلكتروني',
                         ),
                         SizedBox(
                           height: 16.h,
@@ -177,8 +177,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         ////Email/phone from field////
                         FromField(
                           controller: provider.phoneController,
-                          title: "Phone",
-                          hintText: 'Write your phone',
+                          title: "رقم الهاتف",
+                          hintText: 'اكتب رقم هاتفك',
                         ),
                         SizedBox(
                           height: 16.h,
@@ -188,7 +188,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'Password',
+                              'كلمة المرور',
                               style: TextStyle(
                                   letterSpacing: 1,
                                   color: Colors.black,
@@ -210,7 +210,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                   fillColor: AppColors.white,
                                   contentPadding: EdgeInsets.symmetric(
                                       vertical: 13.h, horizontal: 16.w),
-                                  hintText: 'Password',
+                                  hintText: 'كلمة المرور',
                                   enabledBorder: const OutlineInputBorder(
                                     borderSide:
                                         BorderSide(color: AppColors.border),
@@ -242,7 +242,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'Confirm Password',
+                              'تأكيد كلمة المرور',
                               style: TextStyle(
                                   letterSpacing: 1,
                                   color: Colors.black,
@@ -264,7 +264,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                   fillColor: AppColors.white,
                                   contentPadding: EdgeInsets.symmetric(
                                       vertical: 13.h, horizontal: 16.w),
-                                  hintText: 'Confirm Password',
+                                  hintText: 'تأكيد كلمة المرور',
                                   enabledBorder: const OutlineInputBorder(
                                     borderSide:
                                         BorderSide(color: AppColors.border),
@@ -294,7 +294,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         ),
                         if(responseCountry != null && responseCountry!.arabCountries!.isNotEmpty)
                         Text(
-                          'Select Country',
+                          'اختر الدولة',
                           style: TextStyle(
                               letterSpacing: 1,
                               color: Colors.black,
@@ -325,7 +325,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         ),
                         if(responseCountry != null && responseCountry!.provinces!.isNotEmpty)
                         Text(
-                          'Select Provinces',
+                          'اختر المحافظة',
                           style: TextStyle(
                               letterSpacing: 1,
                               color: Colors.black,
@@ -357,7 +357,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         ),
                         if(responseCountry != null && responseCountry!.cities!.isNotEmpty)
                         Text(
-                          'Select City',
+                          'اختر المدينة',
                           style: TextStyle(
                               letterSpacing: 1,
                               color: Colors.black,
@@ -391,17 +391,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 lat = '${value.latitude}';
                                 long = '${value.longitude}';
                                 setState(() {
-                                  locationMsg = 'lat: $lat long: $long';
+                                  locationMsg = 'خط العرض: $lat خط الطول: $long';
                                 });
                                 _liveLocation();
                               });
                             },
-                            child: const Text('Set current Location')),
+                            child: const Text('تحديد الموقع الحالي')),
                         SizedBox(
                           height: 20.h,
                         ),
                         ElevatedbuttonWidget(
-                          text: 'SIGN UP',
+                          text: 'تسجيل',
                           onPressed: () {
 
                             provider.signUpApi(context, long, lat, selectedCountry, selectedProvince, selectedCity);
@@ -413,7 +413,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         Row(
                           children: [
                             Text(
-                              'Already have an account?',
+                              'لديك حساب بالفعل؟',
                               style: TextStyle(
                                   fontSize: 14.sp,
                                   fontWeight: FontWeight.w600,
@@ -431,7 +431,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                     ));
                               },
                               child: Text(
-                                'Sign In',
+                                'تسجيل الدخول',
                                 style: TextStyle(
                                     fontSize: 14.sp,
                                     fontWeight: FontWeight.w600,

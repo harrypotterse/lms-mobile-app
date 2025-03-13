@@ -43,7 +43,7 @@ class AllAssignmentListCart extends StatelessWidget {
               height: 10.h,
             ),
             CustomText(
-              text: details ?? 'Not Found',
+              text: details ?? 'غير موجود',
               fontSize: 14.sp,
               fontWeight: FontWeight.w400,
               color: AppColors.body,
@@ -74,7 +74,7 @@ class AllAssignmentListCart extends StatelessWidget {
                           //   width: 8.w,
                           // ),
                           CustomText(
-                            text: "Due to $deadline",
+                            text: "نظرًا لـ $deadline",
                             color: AppColors.primary,
                             fontSize: 12.sp,
                             fontWeight: FontWeight.w700,
@@ -103,7 +103,7 @@ class AllAssignmentListCart extends StatelessWidget {
                           padding: EdgeInsets.symmetric(
                               horizontal: 0.0.w, vertical: 11.h),
                           child: CustomText(
-                            text: status ?? "submit",
+                            text: status ?? "إرسال",
                             color: AppColors.white,
                             fontSize: 12.sp,
                             fontWeight: FontWeight.w700,
