@@ -126,37 +126,6 @@ class AppDrawer extends StatelessWidget {
                     ),
                     Column(
                       children: [
-                        // DrawerListContent(
-                        //   onTap: () {
-                        //     Navigator.pop(context);
-                        //     Navigator.push(
-                        //         context,
-                        //         MaterialPageRoute(
-                        //           builder: (context) => const MyProfileScreen(
-                        //             isBottomNav: false,
-                        //           ),
-                        //         ));
-                        //   },
-                        //   image: 'assets/mentors/profile_icon.png',
-                        //   title: "My profile",
-                        // ),
-                        // SizedBox(
-                        //   height: 34.h,
-                        // ),
-                        // DrawerListContent(
-                        //   onTap: () {
-                        //     Navigator.push(
-                        //         context,
-                        //         MaterialPageRoute(
-                        //           builder: (context) => const MessageScreen(),
-                        //         ));
-                        //   },
-                        //   image: 'assets/mentors/star_icon.png',
-                        //   title: "Message",
-                        // ),
-                        // SizedBox(
-                        //   height: 34.h,
-                        // ),
                         DrawerListContent(
                           onTap: () {
                             Navigator.pop(context);
@@ -167,22 +136,8 @@ class AppDrawer extends StatelessWidget {
                                 ));
                           },
                           image: 'assets/mentors/course_icon.png',
-                          title: "My Courses",
+                          title: "دوراتي",
                         ),
-                        // SizedBox(
-                        //   height: 34.h,
-                        // ),
-                        // DrawerListContent(
-                        //   onTap: () {
-                        //     Navigator.push(
-                        //         context,
-                        //         MaterialPageRoute(
-                        //           builder: (context) => const MeetingsScreen(),
-                        //         ));
-                        //   },
-                        //   image: 'assets/mentors/star_icon.png',
-                        //   title: "Meetings",
-                        // ),
                         SizedBox(
                           height: 34.h,
                         ),
@@ -196,7 +151,7 @@ class AppDrawer extends StatelessWidget {
                                 ));
                           },
                           image: 'assets/mentors/star_icon.png',
-                          title: "Assignments",
+                          title: "الواجبات",
                         ),
                         SizedBox(height: 34.h ),
 
@@ -206,30 +161,13 @@ class AppDrawer extends StatelessWidget {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                //builder: (context) => ChatViewScreen(chatLink: "${AppConst.baseUrl}/student/live-chat-web/${provider.userId}", appTitle: "Chat Screen",),
-                                //builder: (context) => ChatViewScreen(chatLink: "https://mh.onesttech.com/student/live-chat-web/${provider.userId}", appTitle: "Chat Screen",),
-                                //builder: (context) => ChatViewScreen(chatLink: "https://lms.null-safety.com/student/live-chat/${provider.userId}", appTitle: "Chat Screen",),
-                                builder: (context) => ChatViewScreen(chatLink: "https://lms.null-safety.com/chat/${provider.userId}", appTitle: "Chat Screen",),
+                                builder: (context) => ChatViewScreen(chatLink: "https://lms.null-safety.com/chat/${provider.userId}", appTitle: "المحادثة",),
                               ),
                             );
                           },
                           image: 'assets/mentors/chat.png',
-                          title: "Chat",
+                          title: "المحادثة",
                         ),
-                        // SizedBox(
-                        //   height: 34.h,
-                        // ),
-                        // DrawerListContent(
-                        //   onTap: () {
-                        //     Navigator.push(
-                        //         context,
-                        //         MaterialPageRoute(
-                        //           builder: (context) => const QuizzesScreen(),
-                        //         ));
-                        //   },
-                        //   image: 'assets/mentors/star_icon.png',
-                        //   title: "Quizzes",
-                        // ),
                         SizedBox(
                           height: 34.h,
                         ),
@@ -244,7 +182,7 @@ class AppDrawer extends StatelessWidget {
                                 ));
                           },
                           image: 'assets/mentors/star_icon.png',
-                          title: "Cirtificates",
+                          title: "الشهادات",
                         ),
                         SizedBox(
                           height: 34.h,
@@ -259,36 +197,8 @@ class AppDrawer extends StatelessWidget {
                                 ));
                           },
                           image: 'assets/mentors/star_icon.png',
-                          title: "Bookmark",
+                          title: "المفضلة",
                         ),
-                        // SizedBox(
-                        //   height: 34.h,
-                        // ),
-                        // DrawerListContent(
-                        //   onTap: () {
-                        //     Navigator.push(
-                        //         context,
-                        //         MaterialPageRoute(
-                        //           builder: (context) => const CommentsScreen(),
-                        //         ));
-                        //   },
-                        //   image: 'assets/mentors/star_icon.png',
-                        //   title: "Comments",
-                        // ),
-                        // SizedBox(
-                        //   height: 34.h,
-                        // ),
-                        // DrawerListContent(
-                        //   onTap: () {
-                        //     Navigator.push(
-                        //         context,
-                        //         MaterialPageRoute(
-                        //           builder: (context) => const PaymentsScreen(),
-                        //         ));
-                        //   },
-                        //   image: 'assets/mentors/icon_payments.png',
-                        //   title: "Payments",
-                        // ),
                         SizedBox(
                           height: 24.h,
                         ),
@@ -303,95 +213,11 @@ class AppDrawer extends StatelessWidget {
                                 ));
                           },
                           image: 'assets/mentors/icon_settings.png',
-                          title: "Settings",
+                          title: "الإعدادات",
                         ),
-                        // DrawerListContent(
-                        //   onTap: () {
-                        //     Navigator.push(
-                        //         context,
-                        //         MaterialPageRoute(
-                        //           builder: (context) => const SubscriptionScreen(),
-                        //         ));
-                        //   },
-                        //   image: 'assets/mentors/icon_settings.png',
-                        //   title: "Subscriptions",
-                        // ),
-                        // SizedBox(
-                        //   height: 20.h,
-                        // ),
-                        // Padding(
-                        //   padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                        //   child: ExpansionTile(
-                        //     title: Padding(
-                        //       padding: EdgeInsets.symmetric(horizontal: 10.0),
-                        //       child: CustomText(
-                        //         text: "Settings",
-                        //         fontSize: 15.sp,
-                        //         fontWeight: FontWeight.w600,
-                        //         color: AppColors.title,
-                        //       ),
-                        //     ),
-                        //     leading: Image.asset(
-                        //       'assets/mentors/icon_settings.png',
-                        //       fit: BoxFit.cover,
-                        //       height: 32.h,
-                        //     ), //add icon
-                        //     childrenPadding: const EdgeInsets.only(
-                        //         left: 20), //children padding
-                        //     children: [
-                        //       ListTile(
-                        //         title: const Text(
-                        //           "About Us",
-                        //           style: TextStyle(
-                        //               color: AppColors.title, fontSize: 16),
-                        //         ),
-                        //         onTap: () {
-                        //           // Navigator.push(
-                        //           //     context,
-                        //           //     MaterialPageRoute(
-                        //           //       builder: (context) => const AboutUsScreen(),
-                        //           //     ));
-                        //         },
-                        //       ),
-
-                        //       ListTile(
-                        //         title: const Text(
-                        //           "App Terms",
-                        //           style: TextStyle(
-                        //               color: AppColors.title, fontSize: 16),
-                        //         ),
-                        //         onTap: () {
-                        //           //action on press
-                        //         },
-                        //       ),
-
-                        //       //more child menu
-                        //     ],
-                        //   ),
-                        // ),
-                        // const DrawerListContent(
-                        //   image: 'assets/mentors/icon_settings.png',
-                        //   title: "Settings",
-                        // ),
                         SizedBox(
                           height: 20.h,
                         ),
-                        // DrawerListContent(
-                        //   onTap: () {
-                        //     Navigator.pop(context);
-                        //     Navigator.push(
-                        //         context,
-                        //         MaterialPageRoute(
-                        //           builder: (context) =>
-                        //               const NotificationScreen(),
-                        //         ));
-                        //   },
-                        //   image: 'assets/mentors/icon_notification.png',
-                        //   title: "Notifications",
-                        // ),
-                        // SizedBox(
-                        //   height: 34.h,
-                        // ),
                       ],
                     )
                   ],
@@ -451,11 +277,9 @@ class DrawerListContent extends StatelessWidget {
               Expanded(
                 child: Image.asset(
                   image!,
-                  // 'assets/mentors/profile_icon.png',
                   height: 32.h,
                 ),
               ),
-              //Spacer(),
               Expanded(
                 child: CustomText(
                   text: title,

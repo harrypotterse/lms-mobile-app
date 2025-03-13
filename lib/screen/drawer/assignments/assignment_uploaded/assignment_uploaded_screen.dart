@@ -19,7 +19,7 @@ class AssignmentUploadedScreen extends StatelessWidget {
           return Scaffold(
             appBar: PreferredSize(
               preferredSize: Size.fromHeight(70.h),
-              child: const CustomAppBar(appBarName: 'Assignments Details'),
+              child: const CustomAppBar(appBarName: 'تفاصيل الواجبات'),
             ),
             body: Column(
               children: [
@@ -44,7 +44,7 @@ class AssignmentUploadedScreen extends StatelessWidget {
                           child: Column(
                             children: [
                               CustomText(
-                                text: 'You Uploaded',
+                                text: 'لقد قمت بالتحميل',
                                 fontSize: 16.sp,
                                 fontWeight: FontWeight.bold,
                                 color: AppColors.title,
@@ -71,7 +71,7 @@ class AssignmentUploadedScreen extends StatelessWidget {
                                     child: Center(
                                       child: provider.assignmentFileName == null
                                           ? const Text(
-                                              "Add A File",
+                                              "إضافة ملف",
                                               textAlign: TextAlign.center,
                                             )
                                           : Text(provider.assignmentFileName ??
@@ -112,7 +112,7 @@ class AssignmentUploadedScreen extends StatelessWidget {
                     onPressed: () {
                       provider.uploadFile(context, assignmentId);
                     },
-                    text: 'Submit',
+                    text: 'إرسال',
                   ),
                 )
               ],

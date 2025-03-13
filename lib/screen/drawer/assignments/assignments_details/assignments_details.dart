@@ -23,7 +23,7 @@ class AssignmentsDetailsPage extends StatelessWidget {
           return Scaffold(
             appBar: PreferredSize(
               preferredSize: Size.fromHeight(70.h),
-              child: const CustomAppBar(appBarName: 'Assignments Details'),
+              child: const CustomAppBar(appBarName: 'تفاصيل الواجبات'),
             ),
             body: Padding(
               padding: EdgeInsets.symmetric(horizontal: 24.0.w, vertical: 20.h),
@@ -33,7 +33,7 @@ class AssignmentsDetailsPage extends StatelessWidget {
                   CustomText(
                     text: provider.assignmentResponse?.data?.assignment
                             ?.courseTitle ??
-                        "Title Not found",
+                        "العنوان غير موجود",
                     color: AppColors.title,
                     fontSize: 16.sp,
                     fontWeight: FontWeight.w600,
@@ -44,7 +44,7 @@ class AssignmentsDetailsPage extends StatelessWidget {
                   CustomText(
                     text: provider
                             .assignmentResponse?.data?.assignment?.details ??
-                        "Details Not Found",
+                        "التفاصيل غير موجودة",
                     color: AppColors.body,
                     fontSize: 16.sp,
                     fontWeight: FontWeight.w400,
@@ -53,7 +53,7 @@ class AssignmentsDetailsPage extends StatelessWidget {
                     height: 20.h,
                   ),
                   CustomText(
-                    text: "Assign By ",
+                    text: "تعيين بواسطة ",
                     color: AppColors.title,
                     fontSize: 16.sp,
                     fontWeight: FontWeight.w600,
@@ -114,7 +114,7 @@ class AssignmentsDetailsPage extends StatelessWidget {
                     height: 24.h,
                   ),
                   CustomText(
-                    text: "File Attachments",
+                    text: "مرفقات الملف",
                     color: AppColors.title,
                     fontSize: 16.sp,
                     fontWeight: FontWeight.w600,
@@ -201,7 +201,7 @@ class AssignmentsDetailsPage extends StatelessWidget {
                   provider.assignmentResponse?.data?.assignment?.status ==
                           'Not Submitted'
                       ? ElevatedButtonWidget(
-                          text: 'Add Submission',
+                          text: 'إضافة تسليم',
                           onPressed: () {
                             NavUtil.navigateScreen(
                                 context,
@@ -210,52 +210,6 @@ class AssignmentsDetailsPage extends StatelessWidget {
                                           ?.data?.assignment?.id ??
                                       0,
                                 ));
-                            // showDialog(
-                            //   context: context,
-                            //   builder: (ctx) => AlertDialog(
-                            //     actions: <Widget>[
-                            //       Center(
-                            //         child: Padding(
-                            //           padding: EdgeInsets.symmetric(vertical: 50.0.h),
-                            //           child: Column(
-                            //             children: [
-                            //               CustomText(
-                            //                 text: 'Upload your Assignment',
-                            //                 fontSize: 16.sp,
-                            //                 fontWeight: FontWeight.w700,
-                            //                 color: AppColors.title,
-                            //               ),
-                            //               SizedBox(
-                            //                 height: 32.h,
-                            //               ),
-                            //               Center(
-                            //                 child: Row(
-                            //                   mainAxisAlignment:
-                            //                       MainAxisAlignment.center,
-                            //                   children: [
-                            //                     const UploadAssignmentCart(
-                            //                       image:
-                            //                           'assets/home_page/upload_vector.png',
-                            //                       title: 'Upload from\nmobile',
-                            //                     ),
-                            //                     SizedBox(
-                            //                       width: 16.w,
-                            //                     ),
-                            //                     const UploadAssignmentCart(
-                            //                       image:
-                            //                           'assets/home_page/upload_vector.png',
-                            //                       title: 'Upload from\nmobile',
-                            //                     ),
-                            //                   ],
-                            //                 ),
-                            //               )
-                            //             ],
-                            //           ),
-                            //         ),
-                            //       )
-                            //     ],
-                            //   ),
-                            // );
                           },
                         )
                       : const SizedBox(),

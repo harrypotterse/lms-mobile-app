@@ -17,7 +17,7 @@ class CertificateScreen extends StatelessWidget {
           return Scaffold(
             appBar: PreferredSize(
               preferredSize: Size.fromHeight(70.h),
-              child: const CustomAppBar(appBarName: 'Certificate'),
+              child: const CustomAppBar(appBarName: 'الشهادات'),
             ),
             body: Padding(
               padding: const EdgeInsets.all(22.0),

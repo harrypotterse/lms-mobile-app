@@ -35,7 +35,7 @@ class _AssignmentsScreenState extends State<AssignmentsScreen>
         return Scaffold(
           appBar: PreferredSize(
             preferredSize: Size.fromHeight(70.h),
-            child: const CustomAppBar(appBarName: 'All Assignments'),
+            child: const CustomAppBar(appBarName: 'جميع الواجبات'),
           ),
           body: Stack(
             children: [
@@ -117,7 +117,7 @@ class _AssignmentsScreenState extends State<AssignmentsScreen>
                     )
                   : const Center(
                       child: Text(
-                      'Assignment is not Available Right now',
+                      'الواجبات غير متوفرة حالياً',
                       textAlign: TextAlign.center,
                     )),
             ],

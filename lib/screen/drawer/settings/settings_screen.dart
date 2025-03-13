@@ -17,7 +17,7 @@ class SettingsScreen extends StatelessWidget {
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(70.h),
-        child: const CustomAppBar(appBarName: 'Settings'),
+        child: const CustomAppBar(appBarName: 'الإعدادات'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(24.0),
@@ -41,7 +41,7 @@ class SettingsScreen extends StatelessWidget {
                     width: 12.w,
                   ),
                   CustomText(
-                    text: 'معلومات عنا ',
+                    text: 'معلومات عنا',
                     fontSize: 16.sp,
                     fontWeight: FontWeight.w400,
                     color: AppColors.body,

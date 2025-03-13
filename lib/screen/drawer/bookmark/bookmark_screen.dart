@@ -18,7 +18,7 @@ class BookmarkScreen extends StatelessWidget {
           return Scaffold(
             appBar: PreferredSize(
               preferredSize: Size.fromHeight(70.h),
-              child: const BookmarkAppBar(appBarName: 'Your Bookmark'),
+              child: const BookmarkAppBar(appBarName: 'المفضلة'),
             ),
             body: provider.bookmarkResponse?.data?.bookmarks?.isEmpty ??
                     true == true
@@ -31,7 +31,7 @@ class BookmarkScreen extends StatelessWidget {
                         child: Align(
                             alignment: Alignment.center,
                             child: Text(
-                              "No Bookmark Found",
+                              "لا توجد عناصر في المفضلة",
                               style: TextStyle(
                                   fontSize: 26,
                                   fontWeight: FontWeight.bold,

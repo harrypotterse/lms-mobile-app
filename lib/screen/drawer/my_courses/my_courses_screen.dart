@@ -27,7 +27,7 @@ class _MyCoursesScreenState extends State<MyCoursesScreen>
           return Scaffold(
             appBar: PreferredSize(
               preferredSize: Size.fromHeight(70.h),
-              child: const CustomAppBar(appBarName: 'My Courses'),
+              child: const CustomAppBar(appBarName: 'دوراتي'),
             ),
             body: provider.profileResponse?.data?.enrolls?.courses.isEmpty ??
                     true == true
@@ -40,7 +40,7 @@ class _MyCoursesScreenState extends State<MyCoursesScreen>
                         child: Align(
                             alignment: Alignment.center,
                             child: Text(
-                              "My Course not found",
+                              "لم يتم العثور على دورات",
                               style: TextStyle(
                                   fontSize: 26,
                                   fontWeight: FontWeight.bold,
@@ -163,7 +163,7 @@ class _MyCoursesScreenState extends State<MyCoursesScreen>
                                         //     ));
                                       },
                                       child: CustomText(
-                                        text: "Play Now",
+                                        text: "تشغيل الآن",
                                         color: AppColors.white,
                                         fontSize: 12.sp,
                                         fontWeight: FontWeight.w500,
