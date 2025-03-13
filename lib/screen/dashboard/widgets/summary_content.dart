@@ -18,8 +18,8 @@ class SummaryContent extends StatelessWidget {
           SummaryCart(
             image: "assets/home_page/dash_one.png",
             total: dashboardResponse?.data?.courseCount.toString() ?? '',
-            type: "Courses",
-            title: "Courses Count",
+            type: "دورات",
+            title: "عدد الدورات",
           ),
           SizedBox(
             width: 10.w,
@@ -27,8 +27,8 @@ class SummaryContent extends StatelessWidget {
           SummaryCart(
             image: "assets/home_page/dash_two.png",
             total: dashboardResponse?.data?.purchaseAmounts.toString() ?? "",
-            type: "Purchase",
-            title: "Purchase Count",
+            type: "مشتريات",
+            title: "عدد المشتريات",
           ),
         ],
       ),

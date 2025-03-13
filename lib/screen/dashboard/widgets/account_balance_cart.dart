@@ -37,7 +37,7 @@ class AccountBalanceCart extends StatelessWidget {
                   height: 9.h,
                 ),
                 CustomText(
-                  text: "Account Balance",
+                  text: "رصيد الحساب",
                   color: AppColors.title,
                   fontSize: 14.sp,
                   fontWeight: FontWeight.w500,

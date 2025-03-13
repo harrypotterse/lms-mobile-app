@@ -59,7 +59,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                               total: provider.dashboardResponse?.data?.courseCount
                                       .toString() ??
                                   '',
-                              type: "Courses",
+                              type: "الدورات",
                               title: "عدد الدورات",
                             ),
                           ),
@@ -73,7 +73,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                       .dashboardResponse?.data?.purchaseAmounts
                                       .toString() ??
                                   '',
-                              type: "Purchase",
+                              type: "مشتريات",
                               title: "عدد المشتريات",
                             ),
                           ),

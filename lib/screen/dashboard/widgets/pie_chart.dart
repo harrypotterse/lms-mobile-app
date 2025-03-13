@@ -55,7 +55,7 @@ class PieChart2State extends State {
                   children: <Widget>[
                     const Indicator(
                       color: Color(0xff29D697),
-                      text: 'Basic HTML',
+                      text: 'HTML أساسي',
                       isSquare: true,
                     ),
                     const SizedBox(
@@ -63,7 +63,7 @@ class PieChart2State extends State {
                     ),
                     const Indicator(
                       color: Color(0xfff8b250),
-                      text: 'Basic CSS',
+                      text: 'CSS أساسي',
                       isSquare: true,
                     ),
                     SizedBox(
@@ -71,7 +71,7 @@ class PieChart2State extends State {
                     ),
                     const Indicator(
                       color: Color(0xff845bef),
-                      text: 'JavaScript',
+                      text: 'جافاسكريبت',
                       isSquare: true,
                     ),
                   ],
@@ -81,7 +81,7 @@ class PieChart2State extends State {
           ),
         ),
         Positioned(
-            bottom: 110.h,
+            bottom: 140.h,
             right: 0,
             left: 0,
             child: Image.asset(
